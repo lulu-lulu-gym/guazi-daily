@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>就就就就就就这么地吧 · 群聊周报 2026-11-02 → 11-10</title>
+<style>
+  :root{
+    --bg:#F5F2F7;
+    --paper:#FFFFFF;
+    --ink:#26202B;
+    --ink-2:#564D60;
+    --ink-3:#8B8294;
+    --line:#E7E0EE;
+    --accent:#6C4AB6;
+    --accent-soft:#F0EAFB;
+    --green:#2F6B58;
+    --green-soft:#EAF3EF;
+    --warn:#9A5B12;
+    --warn-soft:#FDF3E2;
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html,body{margin:0;padding:0}
+  body{
+    background:
+      radial-gradient(900px 420px at 100% -8%, #EFE6FA 0%, rgba(239,230,250,0) 60%),
+      radial-gradient(700px 380px at -10% 8%, #EAF3EE 0%, rgba(234,243,238,0) 55%),
+      var(--bg);
+    color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Source Han Sans SC",sans-serif;
+    font-size:16px;
+    line-height:1.85;
+    letter-spacing:.01em;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:720px;margin:0 auto;padding:22px 16px 56px}
+
+  .head{padding:6px 4px 20px;border-bottom:1px solid var(--line);margin-bottom:26px}
+  .kicker{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--ink-3);letter-spacing:.14em}
+  .dot{width:7px;height:7px;border-radius:50%;background:var(--accent);display:inline-block}
+  h1{font-size:28px;line-height:1.35;margin:12px 0 6px;font-weight:800;letter-spacing:.02em}
+  h1 .thin{font-weight:400;color:var(--ink-3);font-size:16px;display:block;margin-top:6px;letter-spacing:.06em}
+  .lede{
+    margin:18px 0 0;font-size:15.5px;color:var(--ink-2);
+    background:linear-gradient(180deg,#FEFDFF,#F9F5FE);
+    border:1px solid var(--line);border-left:3px solid var(--accent);
+    border-radius:12px;padding:15px 16px;
+  }
+  .lede b{color:var(--ink)}
+
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:22px 0 8px}
+  .stat{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:13px 10px;text-align:center}
+  .stat .n{font-size:22px;font-weight:800;letter-spacing:.01em;line-height:1.2}
+  .stat .n small{font-size:11px;font-weight:600;color:var(--ink-3);margin-left:2px}
+  .stat .l{font-size:11.5px;color:var(--ink-3);margin-top:3px;letter-spacing:.04em}
+
+  section{margin-top:34px}
+  .sec-h{display:flex;align-items:baseline;gap:10px;margin:0 0 14px;padding-left:2px}
+  .sec-h h2{font-size:18px;margin:0;font-weight:800;letter-spacing:.03em}
+  .sec-h .idx{font-size:11px;color:#fff;background:var(--ink);border-radius:5px;padding:1px 6px;letter-spacing:.08em;transform:translateY(-2px)}
+  .sec-h .sub{font-size:12px;color:var(--ink-3);margin-left:auto}
+
+  .card{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:18px 16px;margin-bottom:14px;box-shadow:0 1px 2px rgba(60,40,90,.03)}
+
+  .chart{display:flex;align-items:flex-end;gap:5px;height:100px;margin:6px 0 2px}
+  .bar-wrap{flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;height:100%}
+  .bar{width:100%;border-radius:3px 3px 0 0;background:linear-gradient(180deg,#9B7CD4,#6C4AB6);min-height:2px}
+  .bar.low{background:linear-gradient(180deg,#D9CFE6,#BFB2D4)}
+  .xlab{display:flex;gap:5px;margin-top:6px}
+  .xlab span{flex:1;text-align:center;font-size:10px;color:var(--ink-3)}
+  .chart-foot{font-size:12.5px;color:var(--ink-3);margin-top:10px;border-top:1px dashed var(--line);padding-top:10px}
+  .chart-foot b{color:var(--ink-2)}
+
+  .spk{display:flex;align-items:center;gap:10px;margin:9px 0;font-size:13.5px}
+  .spk .nm{width:70px;flex:0 0 70px;color:var(--ink-2)}
+  .spk .track{flex:1;height:9px;background:#F1EBF5;border-radius:6px;overflow:hidden}
+  .spk .fill{height:100%;border-radius:6px;background:linear-gradient(90deg,#B49ADF,#6C4AB6)}
+  .spk .ct{width:46px;text-align:right;font-size:12px;color:var(--ink-3);flex:0 0 46px}
+  .mix{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+  .tag{font-size:12px;color:var(--ink-2);background:#F5F0FA;border:1px solid var(--line);border-radius:999px;padding:3px 10px}
+
+  .t-head{display:flex;gap:12px;align-items:flex-start;margin-bottom:4px}
+  .t-no{flex:0 0 34px;height:34px;border-radius:10px;background:var(--accent-soft);color:var(--accent);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:15px;border:1px solid #DFD2F2}
+  .t-title{font-size:17px;font-weight:800;line-height:1.45;margin:1px 0 0}
+  .t-meta{font-size:11.5px;color:var(--ink-3);margin-top:5px;letter-spacing:.02em}
+  .t-meta b{color:var(--ink-2);font-weight:600}
+  .t-body{margin-top:14px}
+  .row{display:flex;gap:10px;margin:11px 0}
+  .row .k{flex:0 0 46px;font-size:11.5px;font-weight:700;color:var(--accent);letter-spacing:.12em;padding-top:2px}
+  .row .v{flex:1;font-size:14.5px;color:var(--ink-2);line-height:1.8}
+  .row .v b{color:var(--ink);font-weight:700}
+  .row.concl .k{color:var(--green)}
+  .row.concl .v{background:var(--green-soft);border-radius:10px;padding:9px 12px;color:#254E42}
+  .row.disp .v{background:var(--warn-soft);border-radius:10px;padding:9px 12px;color:#7A4A10}
+
+  details{margin-top:12px;border-top:1px dashed var(--line);padding-top:11px}
+  details summary{cursor:pointer;list-style:none;font-size:13px;color:var(--accent);font-weight:600;display:flex;align-items:center;gap:6px;outline:none}
+  details summary::-webkit-details-marker{display:none}
+  details summary::before{content:"▸";font-size:10px;transition:transform .2s}
+  details[open] summary::before{transform:rotate(90deg)}
+  .frag{margin:10px 0 0;padding:0;list-style:none}
+  .frag li{font-size:13.5px;color:var(--ink-2);padding:6px 0 6px 12px;border-left:2px solid #E6DBF3;margin-bottom:5px;line-height:1.75}
+  .frag li .tm{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;color:var(--ink-3);margin-right:6px}
+  .frag li .who{color:var(--accent);font-weight:600;margin-right:5px}
+
+  .q{background:var(--paper);border:1px solid var(--line);border-left:3px solid #B49ADF;border-radius:0 14px 14px 0;padding:13px 15px;margin-bottom:10px}
+  .q p{margin:0;font-size:15px;line-height:1.8;color:var(--ink)}
+  .q .who{font-size:12px;color:var(--ink-3);margin-top:7px}
+  .q .who b{color:var(--green);font-weight:700;font-size:12.5px}
+
+  .warnbox{background:#FFFCF6;border:1px solid #F0DCC0;border-radius:14px;padding:4px 16px 12px}
+  .warnbox ol{margin:10px 0 0;padding-left:20px}
+  .warnbox li{font-size:14px;color:var(--ink-2);margin-bottom:9px;line-height:1.78}
+  .warnbox li b{color:var(--ink)}
+
+  .fun{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px}
+  .fun .pill{font-size:13px;background:var(--paper);border:1px solid var(--line);border-radius:999px;padding:5px 12px;color:var(--ink-2)}
+
+  footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);font-size:11.5px;color:var(--ink-3);line-height:1.9}
+  footer b{color:var(--ink-2)}
+
+  @media (max-width:400px){
+    h1{font-size:24px}
+    .stats{grid-template-columns:repeat(2,1fr)}
+    .spk .nm{width:56px;flex-basis:56px;font-size:12.5px}
+    .row .k{flex-basis:40px;font-size:11px}
+  }
+  @media print{
+    body{background:#fff}
+    .wrap{max-width:none;padding:0}
+    details{display:block}details summary{display:none}details > *{display:block}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="head">
+    <div class="kicker"><span class="dot"></span>群聊周报 · 2026-11-02（周一）→ 11-10（周二）</div>
+    <h1>就就就就就就这么地吧
+      <span class="thin">一周 1335 条消息：核磁乌龙、猎奇攻防战，与一场情人节生日保卫战</span>
+    </h1>
+    <p class="lede">
+      <b>一句话摘要：</b>这是战斗密度极高的一周——<b>周一</b>以「做核磁忘摘项链锁」的史诗级乌龙开场，并顺势确立全周主旋律（卧推、田径、射箭各练各的）；<b>周二</b>婉慈和天天爆发猎奇视频攻防战；<b>周三</b>达到流量峰值：东北菜聚餐方案出炉、封号与"擦边"大讨论、新能源电车掉电梗连环输出；<b>周五</b>李佳璇的生日被 2027 年历法推入"情人节 vs 正月初十"的险境；周末安静如鸡，只留下周一周二升旗时在结冰操场上滑出的那一个大出溜。
+    </p>
+
+    <div class="stats">
+      <div class="stat"><div class="n">1335<small>条</small></div><div class="l">消息总数</div></div>
+      <div class="stat"><div class="n">5<small>人</small></div><div class="l">成员发言</div></div>
+      <div class="stat"><div class="n">9<small>天</small></div><div class="l">覆盖跨度</div></div>
+      <div class="stat"><div class="n">8<small>个</small></div><div class="l">重点话题</div></div>
+    </div>
+  </header>
+
+  <section>
+    <div class="sec-h"><h2>一周画像</h2><span class="sub">11-02 → 11-10</span></div>
+    <div class="card">
+      <div class="chart">
+        <div class="bar-wrap"><div class="bar" style="height:96%"></div></div>
+        <div class="bar-wrap"><div class="bar" style="height:84%"></div></div>
+        <div class="bar-wrap"><div class="bar" style="height:100%"></div></div>
+        <div class="bar-wrap"><div class="bar" style="height:34%"></div></div>
+        <div class="bar-wrap"><div class="bar low" style="height:7%"></div></div>
+        <div class="bar-wrap"><div class="bar" style="height:49%"></div></div>
+        <div class="bar-wrap"><div class="bar low" style="height:5%"></div></div>
+        <div class="bar-wrap"><div class="bar low" style="height:13%"></div></div>
+        <div class="bar-wrap"><div class="bar low" style="height:1%"></div></div>
+      </div>
+      <div class="xlab">
+        <span>11-02</span><span>11-03</span><span>11-04</span><span>11-05</span><span>11-06</span><span>11-07</span><span>11-08</span><span>11-09</span><span>11-10</span>
+      </div>
+      <div class="chart-foot">
+        <b>周一到周四是绝对主战场</b>（合计 1077 条，占 80.7%），典型节奏是"下午 3 点开聊、4 点冲顶、6 点收尾"。11-04 以 343 条登顶；周末（11-08、11-10 两天合计 21 条）几乎静默——<b> everyone 都在过自己的日子。</b>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="spk"><span class="nm">璐璐</span><span class="track"><span class="fill" style="width:100%"></span></span><span class="ct">425</span></div>
+      <div class="spk"><span class="nm">婉慈</span><span class="track"><span class="fill" style="width:87%"></span></span><span class="ct">369</span></div>
+      <div class="spk"><span class="nm">多眠</span><span class="track"><span class="fill" style="width:65%"></span></span><span class="ct">276</span></div>
+      <div class="spk"><span class="nm">天天</span><span class="track"><span class="fill" style="width:43%"></span></span><span class="ct">183</span></div>
+      <div class="spk"><span class="nm">李佳璇</span><span class="track"><span class="fill" style="width:18%"></span></span><span class="ct">77</span></div>
+      <div class="mix">
+        <span class="tag">文本 933</span><span class="tag">动画表情 198</span><span class="tag">引用回复 89</span>
+        <span class="tag">图片 84</span><span class="tag">语音 14</span><span class="tag">视频 8</span>
+        <span class="tag">链接 2</span><span class="tag">聊天记录转发 1</span><span class="tag">系统 5</span>
+      </div>
+      <div class="chart-foot">
+        <b>璐璐</b>是全周引擎（31.9%）：投票、约局、吐槽同事全靠她发起；<b>婉慈</b>是猎奇内容与健身观点的双重供给源；<b>多眠</b>贡献了本周最佳素材（核磁乌龙）；<b>天天</b>话少但每句都在点子上；<b>李佳璇</b>的存在感集中在生日梗与表情包求援。成员显示名已去除群昵称中的生日与 MBTI 后缀及表情前缀。
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="sec-h" style="margin:0 0 10px"><h2 style="font-size:15px">表情包与图片观察</h2></div>
+      <div class="v" style="font-size:14.5px;color:var(--ink-2)">
+        全周 <b>198 个动画表情（14.8%）与 84 张图片</b>不是背景噪音，而是三套精密运转的装置：<br>
+        ① <b>猎奇接力装置</b>——婉慈与天天之间形成了"发出蛇精病表情 → 0.1 秒存图跟上"的固定回路（11-07 璐璐全程解说），高光素材包括"煮虫子""煮棉拖鞋"与大奶子鲨鱼表情包；<br>
+        ② <b>抽象图库系统</b>——李佳璇求"聊骚用的可爱表情包"，璐璐翻遍库存只得数张，自曝"再翻就是抽象加上黄图了"，坐实全群表情包生态失衡；<br>
+        ③ <b>图片叙事线</b>——84 张图按上下文可归纳为：种草实拍（加绒裤、平价 lulu、腿包"情侣款"）、训练记录（射箭靶纸、升磅数、跑步鞋新鞋）、生活切片（鸡胸肉、妙峰山"照骗"、丑猫、AI 生成图、结冰操场）。<br>
+        <b>14 条语音无法读取内容，仅按后续文字回应纳入语境；视频 8 段同理。</b>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-h"><h2>重点话题</h2><span class="sub">按讨论体量与信息密度排序</span></div>
+
+    <!-- 1 -->
+    <article class="card topic">
+      <div class="t-head">
+        <div class="t-no">01</div>
+        <div>
+          <h3 class="t-title">核磁乌龙与膝盖康复路线：本群唯一真"磨膝"</h3>
+          <div class="t-meta">11-02 全天 → 11-03 复盘 · <b>4 人参与</b> · 本周最完整的一条故事线</div>
+        </div>
+      </div>
+      <div class="t-body">
+        <div class="row"><div class="k">背景</div><div class="v">多眠长期膝盖不适（群内梗"本群唯一真磨膝"），周一六点做核磁。婉慈先讲了摩托"磨膝课"，多眠回"听不了磨膝这俩字"，随后她发现自己做核磁时<b>忘摘了脖子上的项链锁</b>——一条"朋克锁链"，回家取钥匙二次进场，全程直播。</div></div>
+        <div class="row"><div class="k">观点</div><div class="v">
+          <b>多眠</b>：自嘲"一个朋克轻轻的碎了""再也不搞朋克了"；科普康复思路——"不打网球或许可以""如果想高强度运动，反正得增肌""用肌肉维持膝盖稳定，不然时间长了磨软骨"；已挂<b>下周一北医三院</b>的号。<br>
+          <b>婉慈</b>：既递刀又关心——"师傅到了：开哪个？你：我脖子上这个"，但也认真问"是不是恢复的好就不用手术遭罪了"。<br>
+          <b>天天</b>：技术分析流——追问"你睡觉不摘吗""你是不是从周六就没摘过"。<br>
+          <b>璐璐</b>：纯观众，笑到"嗓子疼"，并发布《本群笑话排行榜》：1. 婉子小时候割手；2. 眠子做核磁没带钥匙。
+        </div></div>
+        <div class="row disp"><div class="k">争议</div><div class="v">是否手术<b>完全未定</b>（核磁结果次日才出，北医三院就诊发生在 11-09 前后，但本周记录里没有就诊结果），康复方案也仅是多眠的个人理解。</div></div>
+        <div class="row concl"><div class="k">结论</div><div class="v">当下确定的只有两件事：项链回头要买个活动扣；增肌护膝是长期路线。手术与否请以医院结论为准，本报告不作判断。</div></div>
+        <details>
+          <summary>查看原始片段（6 条）</summary>
+          <ul class="frag">
+            <li><span class="tm">11-02 17:01</span><span class="who">多眠</span>"六点做核磁" / "看看我的膝磨得咋样了"</li>
+            <li><span class="tm">11-02 17:02</span><span class="who">多眠</span>"本群唯一真'磨膝'"</li>
+            <li><span class="tm">11-02 18:23</span><span class="who">多眠</span>"一个朋克轻轻的碎了" / "做核磁去了忘开锁"</li>
+            <li><span class="tm">11-02 18:26</span><span class="who">婉慈</span>"师傅到了：开哪个" / "你：我脖子上这个"</li>
+            <li><span class="tm">11-03 17:40</span><span class="who">多眠</span>"如果想高强度运动 反正得增肌" / "用肌肉维持膝盖稳定 不然时间长了磨软骨"</li>
+            <li><span class="tm">11-03 17:39</span><span class="who">多眠</span>"然后挂了下周一北医三院的号"</li>
+          </ul>
+        </details>
+      </div>
+    </article>
+
+    <!-- 2 -->
+    <article class="card topic">
+      <div class="t-head">
+        <div class="t-no">02</div>
+        <div>
+          <h3 class="t-title">训练局全景：卧推是酷刑、田径要 1V1、射箭在进步</h3>
+          <div class="t-meta">11-02、11-07 为主 · <b>5 人参与</b> · 全周最长线</div>
+        </div>
+      </div>
+      <div class="t-body">
+        <div class="row"><div class="k">背景</div><div class="v">四个人四种练法：婉慈练力量举兼想学田径，多眠在通州射箭，璐璐用哑铃自学卧推并惦记美猎弓两年，李佳璇周五换了新教练。被璐璐总结为"复仇计划"。</div></div>
+        <div class="row"><div class="k">观点</div><div class="v">
+          <b>婉慈</b>：卧推体验极差——"舒服个鸡儿……我觉得比深蹲还难受"；自曝之前穿赛车鞋学跑跳训练把<b>俩跟腱都整发炎了</b>，"缓了一周现在好了""再也不这么傻逼了"；学技能坚持 1V1——"我对自己 的笨逼很有意识""小班课都她妈十七八岁的，我跟着那儿学啊"；金句"菜就是原罪"。<br>
+          <b>多眠</b>：十米靶"这两次稳定了一些"；后升磅数手疼决定退回，"改动作没啥问题了再升"，并指出璐璐"刚第二次不稳定太正常了"。<br>
+          <b>璐璐</b>：哑铃卧推"还挺舒服"，周五报喜"我能飞 5 了！我蒸棒"，但又发愁"肩膀怎么充血都不是圆的"；确认美猎弓"看了至少 2 年"。<br>
+          <b>李佳璇</b>："去健身 试试新教练"，得到多眠热情响应"试试我"。
+        </div></div>
+        <div class="row disp"><div class="k">争议</div><div class="v">"田径 vs 体能训练"边界（婉慈：不一样，教田径的多是青少年班）；小班课 vs 1V1 的学习效率之争（多眠建议"报个小团课先上几节"，婉慈拒绝：跑跳投"不行，我要1V1"）。均属个人经验之谈。</div></div>
+        <div class="row concl"><div class="k">结论</div><div class="v">无统一课表，各练各的；唯一可执行共识：量力而行、动作优先、别再穿赛车鞋练跑跳。</div></div>
+        <details>
+          <summary>查看原始片段（6 条）</summary>
+          <ul class="frag">
+            <li><span class="tm">11-02 16:45</span><span class="who">婉慈</span>"我觉得比深蹲还难受"</li>
+            <li><span class="tm">11-02 16:46</span><span class="who">婉慈</span>"我自己的俩跟腱都整发炎了hh" / "缓了一周现在好了"</li>
+            <li><span class="tm">11-02 17:02</span><span class="who">婉慈</span>"我对自己的笨逼很有意识，我得学1V1"</li>
+            <li><span class="tm">11-02 16:56</span><span class="who">多眠</span>"十米这两次稳定了一些诶"</li>
+            <li><span class="tm">11-07 13:31</span><span class="who">多眠</span>"我升了磅数这两天手有点疼 打算退回去了"</li>
+            <li><span class="tm">11-03 22:40</span><span class="who">璐璐</span>"我能飞5了！ 我蒸棒"</li>
+          </ul>
+        </details>
+      </div>
+    </article>
+
+    <!-- 3 -->
+    <article class="card topic">
+      <div class="t-head">
+        <div class="t-no">03</div>
+        <div>
+          <h3 class="t-title">封号与"擦边"之争：平台双标与机位哲学</h3>
+          <div class="t-meta">11-04 16:31–17:45 · <b>4 人参与</b> · 观点密度最高的一段</div>
+        </div>
+      </div>
+      <div class="t-body">
+        <div class="row"><div class="k">背景</div><div class="v">婉慈宣布一个"好消息"：之前在抖音刷到的"用女儿做助眠内容"的大哥封号了——"我他吗老刷到他，看到一次我举报一次，终于他妈的凉了"。由此引出平台审核标准的连环吐槽。</div></div>
+        <div class="row"><div class="k">观点</div><div class="v">
+          <b>婉慈</b>：断言"摩托群健身群99%都有这些（猎奇擦边）"；同时给出专业判断框架——"到底是教学还是擦边，其实氛围一眼就能看出来""就跟男的夸我美一样，我基本上马上就能判断是纯夸还是骚扰"；补充比赛语境"臀展是评分标准之一"。<br>
+          <b>璐璐</b>：晒自己小红书 cos 战术帖被删的经历（"号没封 帖子封了"）；吐槽健身房"傻大姐"对镜硬拉机位——"正后方……就皮燕子和逼，烦死了"，但在美国直播硬拉时"嘎巴一声腰突犯了"当笑料讲。<br>
+          <b>多眠</b>：矛头对准平台——"正经擦边的都没事，啥事没有的健身直播反而动不动就封"；举反例"对着一坨皮炎拍都没事"。<br>
+          <b>天天</b>：一次性收尾——"退了吧，什么b群，转发这些"。
+        </div></div>
+        <div class="row disp"><div class="k">争议</div><div class="v">"微擦但有实力"的边界：婉慈与璐璐最终达成"练得牛逼的能接受，因为根本顾不上看别的地方"，但这属于个人审美，无普适标准；各账号被封的具体原因均为群友单方转述，<b>未经核实</b>。</div></div>
+        <div class="row concl"><div class="k">结论</div><div class="v">群内共识一句话：教学还是擦边，氛围一眼看出来。对平台双标的不满则是集体情绪，不构成事实认定。</div></div>
+        <details>
+          <summary>查看原始片段（5 条）</summary>
+          <ul class="frag">
+            <li><span class="tm">11-04 16:36</span><span class="who">婉慈</span>"他凉了 封号了" / "看到一次我举报一次"</li>
+            <li><span class="tm">11-04 16:37</span><span class="who">多眠</span>"正经擦边的都没事" / "啥事没有的健身直播反而动不动就封"</li>
+            <li><span class="tm">11-04 16:37</span><span class="who">璐璐</span>"我发个cos的那个 就给我封了"</li>
+            <li><span class="tm">11-04 17:01</span><span class="who">婉慈</span>"到底是教学还是擦边，其实氛围一眼就能看出来"</li>
+            <li><span class="tm">11-04 16:59</span><span class="who">婉慈</span>"菜就是原罪"</li>
+          </ul>
+        </details>
+      </div>
+    </article>
+
+    <!-- 4 -->
+    <article class="card topic">
+      <div class="t-head">
+        <div class="t-no">04</div>
+        <div>
+          <h3 class="t-title">聚餐公投：东北菜以全票优势进入调研阶段</h3>
+          <div class="t-meta">11-04 13:14–15:10 · <b>4 人参与</b> · 本周唯一有"决议"的事项</div>
+        </div>
+      </div>
+      <div class="t-body">
+        <div class="row"><div class="k">背景</div><div class="v">天天先把圣诞团建指派给"小宋"（"交给你我们不烧心"），璐璐随即启动下周聚餐立项，端出正式方案。</div></div>
+        <div class="row"><div class="k">观点</div><div class="v">
+          <b>璐璐</b>（提案人）：方案1 东北菜 / 方案2 蒸汽石锅鱼 / 方案3 火锅 / 方案4 欢迎投稿；个人强烈倾向东北菜——"杀猪菜……锅包肉……酸菜馅饺子""咱也不整那些漂亮的花活了纯过日子人""东北公主"；主动承担调研——之前的店"菜好吃 体验感不好"（大厅太吵），准备看"辽宁驻京办、黑龙江驻京办"。<br>
+          <b>婉慈</b>：关键一票——"东北菜🉑"。<br>
+          <b>多眠</b>："俺都可以😌 选你们爱吃的"。<br>
+          <b>天天</b>：把圣诞团建正式移交婉慈（@小宋）。
+        </div></div>
+        <div class="row disp"><div class="k">争议</div><div class="v">无争议，方案 4"投稿"无人投稿。</div></div>
+        <div class="row concl"><div class="k">结论</div><div class="v"><b>东北菜基本锁定</b>，餐厅候选（驻京办路线）与具体时间未定；圣诞团建责任人为婉慈。截至 11-10 均无后续进展。</div></div>
+        <details>
+          <summary>查看原始片段（5 条）</summary>
+          <ul class="frag">
+            <li><span class="tm">11-04 13:34</span><span class="who">璐璐</span>"方案1 东北菜"（后续补 2/3/4）</li>
+            <li><span class="tm">11-04 13:52</span><span class="who">璐璐</span>"杀猪菜。。。。锅包肉 酸菜馅饺子"</li>
+            <li><span class="tm">11-04 13:52</span><span class="who">璐璐</span>"咱也不整那些漂亮的花活了纯过日子人"</li>
+            <li><span class="tm">11-04 14:35</span><span class="who">婉慈</span>"东北菜🉑"</li>
+            <li><span class="tm">11-04 13:14</span><span class="who">天天</span>"小宋，你负责安排圣诞节团建"</li>
+          </ul>
+        </details>
+      </div>
+    </article>
+
+    <!-- 5 -->
+    <article class="card topic">
+      <div class="t-head">
+        <div class="t-no">05</div>
+        <div>
+          <h3 class="t-title">周末局：廊坊射箭的邀约与婉慈的"冬歇宣言"</h3>
+          <div class="t-meta">11-03 计划 → 11-08 收尾 · <b>4 人参与</b></div>
+        </div>
+      </div>
+      <div class="t-body">
+        <div class="row"><div class="k">背景</div><div class="v">璐璐宣布周六跟朋友骑车去廊坊，"看附近有个箭馆特别大，有30米的箭道"，吃完饭顺路射箭。多眠第一反应是吃醋："你不要我了""射什么箭要去廊坊，通州你还嫌不够远吗"。</div></div>
+        <div class="row"><div class="k">观点</div><div class="v">
+          <b>璐璐</b>：贴心补偿方案——"要是我有车就好了 就能接你一起来""我去问问能不能给眠子拉上"；最终改为"那我回来咱俩去通州玩，不折腾你了"。<br>
+          <b>婉慈</b>：发表冬歇宣言——"11月依然在约骑车""我一般过十一之后骑车就没什么乐趣了""跑山的话我纯痛苦，可以越野""我今年尽力解锁一下雪骑"（璐璐评：恐怖故事）。同时立下明年之约："咱明年能野餐上嘛"，并获得璐璐升级提案"不得整个露营？"<br>
+          <b>多眠</b>：拒坐摩托——"别别 我坐摩托紧张"，随后被科普是坐汽车，松一口气；还贡献了"我喜欢坐面包车，那样我就会成为一个面包人"。<br>
+          <b>护妹联盟</b>：婉慈"我不允许我姐妹坐其他男人车"，璐璐复读，随后发现婉慈"有车，操，但是我只有货拉拉"。<br>
+          <b>收尾</b>：11-08 璐璐发妙峰山美图，被天天问"你去了吗"，诚实回答"当然没有"。
+        </div></div>
+        <div class="row disp"><div class="k">争议</div><div class="v">冬骑与雪骑的安全性纯靠互怼推进，无技术讨论；"廊坊箭馆值得跨城去吗"未展开（多眠指出北京通州也有 30 米箭道馆）。</div></div>
+        <div class="row concl"><div class="k">结论</div><div class="v">廊坊之行照原计划进行（细节未播报）；多眠获得"回来一起去通州"的承诺；明年野餐/露营口头立项。</div></div>
+        <details>
+          <summary>查看原始片段（5 条）</summary>
+          <ul class="frag">
+            <li><span class="tm">11-03 15:53</span><span class="who">璐璐</span>"有30米的箭道 我就说吃完饭去射箭。。。。"</li>
+            <li><span class="tm">11-03 15:58</span><span class="who">婉慈</span>"11月依然在约骑车。"</li>
+            <li><span class="tm">11-03 16:05</span><span class="who">婉慈</span>"诡秘你上我的货拉拉还是上男人的保时捷"</li>
+            <li><span class="tm">11-03 16:05</span><span class="who">多眠</span>"那样我就会成为一个面包人"</li>
+            <li><span class="tm">11-08 13:55</span><span class="who">天天</span>"这么好，你去了吗" → 璐璐："当然没有"</li>
+          </ul>
+        </details>
+      </div>
+    </article>
+
+    <!-- 6 -->
+    <article class="card topic">
+      <div class="t-head">
+        <div class="t-no">06</div>
+        <div>
+          <h3 class="t-title">猎奇视频攻防战：0.1 秒接梗机器的诞生</h3>
+          <div class="t-meta">11-03、11-07 两次大战 · <b>4 人参与</b> · 贯穿全周的暗线</div>
+        </div>
+      </div>
+      <div class="t-body">
+        <div class="row"><div class="k">背景</div><div class="v">婉慈与天天存在一条私下的猎奇视频互投通道，本周两次大规模泄漏到群里：周二天天晒出"宋婉慈女士半夜两点给我弹的视频"，宣布"我活到头了"，并宣言"我将以更猛烈的攻势反弹回去"；周五晚间二次开战。</div></div>
+        <div class="row"><div class="k">观点</div><div class="v">
+          <b>天天</b>："我拒绝宋婉慈女士对我给她分享的抖音视频的所有指控并且反弹"；被婉慈反手甩出"天子老师发的视频"截图后进入劣势。<br>
+          <b>婉慈</b>：自评"我现在阈值非常高，承受能力爆表"；素材包括"煮虫子""煮棉拖鞋"。<br>
+          <b>璐璐</b>：宣布观赛立场"我不敢看""我真他妈不敢看"，并总结婉慈的接梗流程——"天子扔出一个蛇精病表情，婉子你先发出一个疑问❓，然后马上存了跟上""0.1秒一个问号发出，下一个0.1秒已经用上了"。<br>
+          <b>多眠</b>：哲学总结——"没有你们，我一辈子看不到这些玩意儿"。
+        </div></div>
+        <div class="row disp"><div class="k">争议</div><div class="v">无争议，只有受害者的哀嚎。</div></div>
+        <div class="row concl"><div class="k">结论</div><div class="v">攻防永久持续，婉慈确认"但是别人给我发猎奇，我也是0.1秒就转发给你了"——闭环形成，战争永不结束。</div></div>
+        <details>
+          <summary>查看原始片段（5 条）</summary>
+          <ul class="frag">
+            <li><span class="tm">11-03 12:57</span><span class="who">天天</span>"我拒绝宋婉慈女士对我给她分享的抖音视频的所有指控并且反弹"</li>
+            <li><span class="tm">11-03 13:37</span><span class="who">婉慈</span>"纯诬陷我来着"</li>
+            <li><span class="tm">11-03 13:46</span><span class="who">婉慈</span>"这个是煮虫子" / "这个是煮棉拖鞋哈哈哈"</li>
+            <li><span class="tm">11-07 20:40</span><span class="who">璐璐</span>"0.1秒一个问号发出下一个0.1秒已经用上了"</li>
+            <li><span class="tm">11-03 13:53</span><span class="who">多眠</span>"没有你们 我一辈子看不到这些玩意儿"</li>
+          </ul>
+        </details>
+      </div>
+    </article>
+
+    <!-- 7 -->
+    <article class="card topic">
+      <div class="t-head">
+        <div class="t-no">07</div>
+        <div>
+          <h3 class="t-title">情人节 vs 正月初十：李佳璇生日保卫战</h3>
+          <div class="t-meta">11-05 18:09–18:17 · <b>3 人参与</b> · 最精密的一次历法讨论</div>
+        </div>
+      </div>
+      <div class="t-body">
+        <div class="row"><div class="k">背景</div><div class="v">婉慈研究发现：<b>2027 年的正月初十恰好是 2 月 15 日</b>——正是李佳璇的生日。"这对我来说是一个很大的考验，因为很容易混淆。"</div></div>
+        <div class="row"><div class="k">观点</div><div class="v">
+          <b>婉慈</b>：坦白历史事故——2018 年（两人认识后的第一个春节）2 月 14 就是正月初十，"底层代码出错了"，从此"之后每年情人节就开始祝我快乐"（李佳璇控诉）；制定防御方案——"从现在开始每天背诵：2月15，2月15，2月15""等到了2月14：哎今天好像是旋子生日？等到了2月15：⚠️您已不是对方好友"；同时预判敌方战术"有的同志心眼太坏了，尝试混淆我"。<br>
+          <b>李佳璇</b>：承认将发动混淆攻击——"2.14我来炸你""你：是明天"，并复刻名场面台词"我画地为牢啊，历娜"（当日绝味鸭脖梗"绝味真把厉娜当句号用了"衍生，全群接力"我画地为牢啊，天子/璐子/眠子"）。
+        </div></div>
+        <div class="row disp"><div class="k">争议</div><div class="v">两人对"认识年份"有分歧：李佳璇说 2018 年认识，婉慈纠正"咱俩2017年下半年"——李佳璇未再反驳，按婉慈版本记录。</div></div>
+        <div class="row concl"><div class="k">结论</div><div class="v">防御工事已建成：每天背诵制。2027-02-14 前后请留意本群是否出现"您已不是对方好友"。</div></div>
+        <details>
+          <summary>查看原始片段（5 条）</summary>
+          <ul class="frag">
+            <li><span class="tm">11-05 18:09</span><span class="who">婉慈</span>"27年的正月初十是2月15号 这对我来说是一个很大的考验"</li>
+            <li><span class="tm">11-05 18:16</span><span class="who">婉慈</span>"2018年2月14就是正月初十 底层代码出错了"</li>
+            <li><span class="tm">11-05 18:14</span><span class="who">婉慈</span>"等到了2月15：⚠️您已不是对方好友"</li>
+            <li><span class="tm">11-05 18:12</span><span class="who">李佳璇</span>"2.14我来炸你"</li>
+            <li><span class="tm">11-05 18:07</span><span class="who">婉慈</span>"我画地为牢啊，佳璇"（接龙）</li>
+          </ul>
+        </details>
+      </div>
+    </article>
+
+    <!-- 8 -->
+    <article class="card topic">
+      <div class="t-head">
+        <div class="t-no">08</div>
+        <div>
+          <h3 class="t-title">打工人实录：从"人来班不上"到"京B 你违法了"</h3>
+          <div class="t-meta">11-02 → 11-09 · <b>4 人参与</b> · 散点但高密度</div>
+        </div>
+      </div>
+      <div class="t-body">
+        <div class="row"><div class="k">背景</div><div class="v">一周里每个成员都贡献了至少一段职场/通勤故事，构成周报的生活底色。</div></div>
+        <div class="row"><div class="k">观点</div><div class="v">
+          <b>天天</b>（教师）：名言"我虽然人来上班了但是一点班不上"；周一在高速最左车道遭遇停车大哥，"真没招了……但是坏了也得变到第四车道啊"；周一早晨"他妈的操场结冰了，一点看不出来，我当众滑了个大出溜"，且因限号只睡了五个多小时；用豆包生成图片疑似触发敏感词（"该不会是国旗吧"），换 DeepSeek 顶班但"干这个活儿没有豆包干得好"。<br>
+          <b>璐璐</b>：骑京 B 摩托从非机动车道钻缝被天天当场 @ 举报"京B9PH07你违法了"，辩解"机动车道过不去……五环辅路每天早上堵到怀疑人生"；吐槽同事揽走书法书初审（有钱）却看不懂，"每隔几分钟就问我一个，这句话啥意思"——"我好想跟他说 哥 钱给我 我来审"；升级为"我每天都想离职，想了好久了""我都在看转行啥的了，我感觉我靠书法真的要饿死了"。<br>
+          <b>婉慈</b>：给璐璐的离职焦虑递上理论支撑——"说明这是正常状态。如果你每天跟我说你好爱上班，那我估计你疯差不多了"；另自曝"我怀疑我是新能源电车，天气一冷我就掉电"，被璐璐反驳"你是内燃机啊，你得支棱起来啊"。<br>
+          <b>多眠</b>：站在璐璐一边——"同事之间，就是要把话说开了"（同意天天）、"凭啥你要一直告诉他，你没工作吗！"；周五与天天上演"请假了"乌龙（一个真发烧，一个跟风说完去上班，然后车打不着了）。
+        </div></div>
+        <div class="row disp"><div class="k">争议</div><div class="v">同事印象分歧：婉慈推测"他估计在公司也是众矢之的""在领导面前超爱装"，璐璐以一手信息纠正——"真不是，他是吭哧吭哧埋头苦干类型""人缘可好了，就我烦他"。<b>以璐璐的一手观察为准。</b></div></div>
+        <div class="row concl"><div class="k">结论</div><div class="v">离职停留在意念阶段，转行方向未明；交通违法与敏感词问题均已当场消化，无进一步行动。</div></div>
+        <details>
+          <summary>查看原始片段（6 条）</summary>
+          <ul class="frag">
+            <li><span class="tm">11-03 10:38</span><span class="who">天天</span>"我虽然人来上班了但是一点班不上"</li>
+            <li><span class="tm">11-04 18:09</span><span class="who">天天</span>"京B9PH07你违法了"</li>
+            <li><span class="tm">11-04 14:45</span><span class="who">璐璐</span>"我好想跟他说 哥 钱给我 我来审"</li>
+            <li><span class="tm">11-04 15:30</span><span class="who">璐璐</span>"我每天都想离职 想了好久了😰"</li>
+            <li><span class="tm">11-04 15:30</span><span class="who">婉慈</span>"如果你每天跟我说你好爱上班 那我估计你疯差不多了"</li>
+            <li><span class="tm">11-09 09:10</span><span class="who">天天</span>"操场结冰了，一点看不出来，我当众滑了个大出溜"</li>
+          </ul>
+        </details>
+      </div>
+    </article>
+  </section>
+
+  <section>
+    <div class="sec-h"><h2>本周金句</h2><span class="sub">原话照录，未改写</span></div>
+    <div class="q"><p>"说明这是正常状态。如果你每天跟我说你好爱上班，那我估计你疯差不多了"</p><div class="who"><b>婉慈</b> 11-04 15:30 · 回应璐璐"我每天都想离职"</div></div>
+    <div class="q"><p>"到底是教学还是擦边，其实氛围一眼就能看出来……就跟男的夸我美一样，我基本上马上就能判断是纯夸还是骚扰"</p><div class="who"><b>婉慈</b> 11-04 17:01</div></div>
+    <div class="q"><p>"苦练内收肌，夹断负心人"<br>"我咋想不到这么牛逼的词呢"</p><div class="who"><b>璐璐</b> 11-03 14:48 · 原创对联式金句</div></div>
+    <div class="q"><p>"一个朋克轻轻的碎了"</p><div class="who"><b>多眠</b> 11-02 18:23 · 核磁乌龙现场</div></div>
+    <div class="q"><p>"双脚离地了，病毒关闭了，聪明的智商又占领高地了"</p><div class="who"><b>婉慈</b> 11-02 18:48 · 引用网友梗安慰多眠</div></div>
+    <div class="q"><p>"婉不懂朋克，但是婉懂老板"</p><div class="who"><b>天天</b> 11-02 18:37</div></div>
+    <div class="q"><p>"我怎么感觉你们几个有复仇计划啊……一个在练射箭，一个练跑跳投"</p><div class="who"><b>璐璐</b> 11-02 16:54</div></div>
+    <div class="q"><p>"诡秘你上我的货拉拉还是上男人的保时捷"　→　"我喜欢坐面包车，那样我就会成为一个面包人"</p><div class="who"><b>婉慈</b> → <b>多眠</b> 11-03 16:05</div></div>
+    <div class="q"><p>"每次我朋友说：你他妈是不是有病，我就得劲儿了"</p><div class="who"><b>婉慈</b> 11-07 20:52</div></div>
+    <div class="q"><p>"等到了2月14：哎今天好像是旋子生日？等到了2月15：⚠️您已不是对方好友"</p><div class="who"><b>婉慈</b> 11-05 18:14</div></div>
+    <div class="q"><p>"一上班就不高兴咋回事，脸色比长白山还难看"</p><div class="who"><b>璐璐</b> 11-09 08:55</div></div>
+    <div class="q"><p>"操场结冰了，一点看不出来，我当众滑了个大出溜"</p><div class="who"><b>天天</b> 11-09 09:10</div></div>
+    <div class="q"><p>"没有你们，我一辈子看不到这些玩意儿"</p><div class="who"><b>多眠</b> 11-03 13:53</div></div>
+  </section>
+
+  <section>
+    <div class="sec-h"><h2>争议与待核实</h2><span class="sub">聊天观点 ≠ 已核实事实</span></div>
+    <div class="warnbox">
+      <ol>
+        <li><b>多眠是否手术</b>——核磁结果"明天吧大概"（11-04 说），北医三院号挂在下周一；截至 11-10 记录中<b>无就诊结果</b>，一切以医院结论为准。</li>
+        <li><b>封号经历</b>——璐璐 cos 帖被删、婉慈健身帖被封、大哥封号等均为个人转述，平台侧原因未核实。</li>
+        <li><b>"雪子造车"讨论</b>——"研发工资低""摩托车利润低、装备利润高""赛车路线"均为婉慈引述网络评论加个人判断，未核实。</li>
+        <li><b>@提及的 AAA 备注名与成员对应关系</b>——小宋=婉慈、手工装裱小刘=璐璐、天姥爷=天天、健身游泳小宇=多眠，系依据回复关系<b>推断</b>；"AAA专业图文（上善若水）"无法确认对应者，标为未知。</li>
+        <li><b>认识年份之争</b>——婉慈说 2017 年下半年，李佳璇说 18 年；婉慈版本未被反驳，暂按其记录。</li>
+        <li><b>语音 14 条</b>无法读取内容，仅按上下文纳入；84 张图片按文字语境解读，未对画面做事实判断。</li>
+        <li><b>转发内容</b>——2 条小红书链接与 1 条"intp"视频号由天天转发（11-04、11-05），1 条他人群聊天记录由璐璐转发（11-09），均不计入转发者的原创观点。</li>
+      </ol>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-h"><h2>轻松时刻</h2><span class="sub">过滤刷屏后保留的梗</span></div>
+    <div class="fun">
+      <span class="pill">《本群笑话排行榜》：婉子小时候割手 / 眠子做核磁没带钥匙</span>
+      <span class="pill">"我拒绝宋婉慈女士对我给她分享的抖音视频的所有指控并且反弹"</span>
+      <span class="pill">0.1 秒猎奇接力：问号 → 存图 → 转发</span>
+      <span class="pill">"我画地为牢啊，×××" 五连击</span>
+      <span class="pill">面包人 vs 保时捷 vs 货拉拉</span>
+      <span class="pill">婉慈：我怀疑我是新能源电车，天气一冷我就掉电</span>
+      <span class="pill">"京B9PH07你违法了"</span>
+      <span class="pill">腿包"情侣款"与"瞎逼忙"贴纸考古</span>
+      <span class="pill">"能出吗：or" 曾毅回答法</span>
+      <span class="pill">六头鲨太贵 → 多眠："12头鲨都给你做"</span>
+    </div>
+  </section>
+
+  <footer>
+    <b>统计口径</b>：数据源为 2026-11-02 00:00 – 11-10 23:59（Asia/Shanghai）的群聊导出记录，群「就就就就就就这么地吧」（55860300959@chatroom），共 <b>1335 条</b>，实际消息止于 11-10 13:34:54。<br>
+    其中系统消息 5 条不计入真人发言，真人发言 <b>1330 条</b>，成员 5 位（含周期性出现的李佳璇 77 条）。<br>
+    成员显示名已统一为常用称呼（璐璐、婉慈、多眠、天天、李佳璇），省略群昵称中的生日、MBTI 后缀及表情前缀；引述他人时的昵称（璐子、璇子、天子、眠子、婉子、诡秘等）在引文中保留原样。<br>
+    人名对应的聊天语境（如"天天为教师""婉慈姓宋"）均来自聊天中自述或他人称呼，属软信息。<br>
+    本报告仅基于 11-02 至 11-10 记录；所有引述均为原话摘录，未改写语义；涉及健康、职场评价的内容已按"群内转述"处理，不代表事实认定。<br>
+    生成时间：2026-11-10 17:15 · 仅供群内回顾使用。
+  </footer>
+
+</div>
+</body>
+</html>

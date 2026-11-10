@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>瓜子精选 · 群聊日报 2026-11-09</title>
+<style>
+  :root{
+    --bg:#F6F2EA;
+    --paper:#FFFFFF;
+    --ink:#2B2620;
+    --ink-2:#5C5348;
+    --ink-3:#8B8175;
+    --line:#EAE0D1;
+    --accent:#B65A26;
+    --accent-soft:#FBEEE3;
+    --green:#2F6B58;
+    --green-soft:#EAF3EF;
+    --warn:#9A5B12;
+    --warn-soft:#FDF3E2;
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html,body{margin:0;padding:0}
+  body{
+    background:
+      radial-gradient(900px 420px at 100% -8%, #FCEFE1 0%, rgba(252,239,225,0) 60%),
+      radial-gradient(700px 380px at -10% 8%, #EDF3EE 0%, rgba(237,243,238,0) 55%),
+      var(--bg);
+    color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Source Han Sans SC",sans-serif;
+    font-size:16px;
+    line-height:1.85;
+    letter-spacing:.01em;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:720px;margin:0 auto;padding:22px 16px 56px}
+
+  /* ---------- header ---------- */
+  .head{padding:6px 4px 20px;border-bottom:1px solid var(--line);margin-bottom:26px}
+  .kicker{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--ink-3);letter-spacing:.14em;text-transform:uppercase}
+  .dot{width:7px;height:7px;border-radius:50%;background:var(--accent);display:inline-block}
+  h1{
+    font-size:30px;line-height:1.3;margin:12px 0 6px;font-weight:800;letter-spacing:.02em;
+  }
+  h1 .thin{font-weight:400;color:var(--ink-3);font-size:17px;display:block;margin-top:6px;letter-spacing:.06em}
+  .lede{
+    margin:18px 0 0;font-size:15.5px;color:var(--ink-2);
+    background:linear-gradient(180deg,#FFFDF8,#FFF9F0);
+    border:1px solid var(--line);border-left:3px solid var(--accent);
+    border-radius:12px;padding:15px 16px;
+  }
+  .lede b{color:var(--ink)}
+
+  /* ---------- stats ---------- */
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:22px 0 8px}
+  .stat{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:13px 10px;text-align:center}
+  .stat .n{font-size:22px;font-weight:800;letter-spacing:.01em;line-height:1.2}
+  .stat .n small{font-size:11px;font-weight:600;color:var(--ink-3);margin-left:2px}
+  .stat .l{font-size:11.5px;color:var(--ink-3);margin-top:3px;letter-spacing:.04em}
+
+  section{margin-top:34px}
+  .sec-h{display:flex;align-items:baseline;gap:10px;margin:0 0 14px;padding-left:2px}
+  .sec-h h2{font-size:18px;margin:0;font-weight:800;letter-spacing:.03em}
+  .sec-h .idx{font-size:11px;color:#fff;background:var(--ink);border-radius:5px;padding:1px 6px;letter-spacing:.08em;transform:translateY(-2px)}
+  .sec-h .sub{font-size:12px;color:var(--ink-3);margin-left:auto}
+
+  .card{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:18px 16px;margin-bottom:14px;box-shadow:0 1px 2px rgba(60,45,25,.03)}
+
+  /* ---------- hour chart ---------- */
+  .chart{display:flex;align-items:flex-end;gap:4px;height:96px;margin:6px 0 2px}
+  .bar-wrap{flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;height:100%}
+  .bar{width:100%;border-radius:3px 3px 0 0;background:linear-gradient(180deg,#D98A50,#B65A26);min-height:2px}
+  .bar.low{background:linear-gradient(180deg,#D9CDBC,#C3B5A2)}
+  .xlab{display:flex;gap:4px;margin-top:6px}
+  .xlab span{flex:1;text-align:center;font-size:10px;color:var(--ink-3)}
+  .chart-foot{font-size:12.5px;color:var(--ink-3);margin-top:10px;border-top:1px dashed var(--line);padding-top:10px}
+
+  /* ---------- speakers ---------- */
+  .spk{display:flex;align-items:center;gap:10px;margin:9px 0;font-size:13.5px}
+  .spk .nm{width:74px;flex:0 0 74px;color:var(--ink-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .spk .track{flex:1;height:9px;background:#F2ECE1;border-radius:6px;overflow:hidden}
+  .spk .fill{height:100%;border-radius:6px;background:linear-gradient(90deg,#E0A26C,#B65A26)}
+  .spk .ct{width:52px;text-align:right;font-size:12px;color:var(--ink-3);flex:0 0 52px}
+  .mix{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+  .tag{font-size:12px;color:var(--ink-2);background:#F7F1E7;border:1px solid var(--line);border-radius:999px;padding:3px 10px}
+
+  /* ---------- topic card ---------- */
+  .topic{position:relative;padding-top:0}
+  .t-head{display:flex;gap:12px;align-items:flex-start;margin-bottom:4px}
+  .t-no{
+    flex:0 0 34px;height:34px;border-radius:10px;background:var(--accent-soft);color:var(--accent);
+    display:flex;align-items:center;justify-content:center;font-weight:800;font-size:15px;
+    border:1px solid #F1D8C4;
+  }
+  .t-title{font-size:17px;font-weight:800;line-height:1.45;margin:1px 0 0}
+  .t-meta{font-size:11.5px;color:var(--ink-3);margin-top:5px;letter-spacing:.02em}
+  .t-meta b{color:var(--ink-2);font-weight:600}
+  .t-body{margin-top:14px}
+  .row{display:flex;gap:10px;margin:11px 0}
+  .row .k{
+    flex:0 0 46px;font-size:11.5px;font-weight:700;color:var(--accent);
+    letter-spacing:.12em;padding-top:2px;
+  }
+  .row .v{flex:1;font-size:14.5px;color:var(--ink-2);line-height:1.8}
+  .row .v b{color:var(--ink);font-weight:700}
+  .row.concl .k{color:var(--green)}
+  .row.concl .v{
+    background:var(--green-soft);border-radius:10px;padding:9px 12px;color:#254E42;
+  }
+  .row.disp .v{background:var(--warn-soft);border-radius:10px;padding:9px 12px;color:#7A4A10}
+
+  details{margin-top:12px;border-top:1px dashed var(--line);padding-top:11px}
+  details summary{
+    cursor:pointer;list-style:none;font-size:13px;color:var(--accent);font-weight:600;
+    display:flex;align-items:center;gap:6px;outline:none;
+  }
+  details summary::-webkit-details-marker{display:none}
+  details summary::before{content:"▸";font-size:10px;transition:transform .2s}
+  details[open] summary::before{transform:rotate(90deg)}
+  .frag{margin:10px 0 0;padding:0;list-style:none}
+  .frag li{font-size:13.5px;color:var(--ink-2);padding:6px 0 6px 12px;border-left:2px solid #F0E5D6;margin-bottom:5px;line-height:1.75}
+  .frag li .tm{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;color:var(--ink-3);margin-right:6px}
+  .frag li .who{color:var(--accent);font-weight:600;margin-right:5px}
+
+  /* ---------- quotes ---------- */
+  .q{background:var(--paper);border:1px solid var(--line);border-left:3px solid #E0A26C;border-radius:0 14px 14px 0;padding:13px 15px;margin-bottom:10px}
+  .q p{margin:0;font-size:15px;line-height:1.8;color:var(--ink)}
+  .q .who{font-size:12px;color:var(--ink-3);margin-top:7px;display:flex;gap:8px;align-items:center}
+  .q .who b{color:var(--green);font-weight:700;font-size:12.5px}
+
+  /* ---------- misc lists ---------- */
+  .warnbox{background:#FFFCF6;border:1px solid #F0DCC0;border-radius:14px;padding:4px 16px 12px}
+  .warnbox ol{margin:10px 0 0;padding-left:20px}
+  .warnbox li{font-size:14px;color:var(--ink-2);margin-bottom:9px;line-height:1.78}
+  .warnbox li b{color:var(--ink)}
+
+  .fun{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px}
+  .fun .pill{
+    font-size:13px;background:var(--paper);border:1px solid var(--line);
+    border-radius:999px;padding:5px 12px;color:var(--ink-2);
+  }
+
+  footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);font-size:11.5px;color:var(--ink-3);line-height:1.9}
+  footer b{color:var(--ink-2)}
+
+  @media (max-width:400px){
+    h1{font-size:25px}
+    .stats{grid-template-columns:repeat(2,1fr)}
+    .spk .nm{width:62px;flex-basis:62px;font-size:12.5px}
+    .row .k{flex-basis:40px;font-size:11px}
+  }
+  @media print{
+    body{background:#fff}
+    .wrap{max-width:none;padding:0}
+    details{display:block}
+    details summary{display:none}
+    details > *{display:block}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="head">
+    <div class="kicker"><span class="dot"></span>群聊日报 · 2026 年 11 月 9 日 · 星期一</div>
+    <h1>瓜子精选
+      <span class="thin">一天 15 小时、931 条消息：一场从"半夜 emo"开始的群主考古</span>
+    </h1>
+    <p class="lede">
+      <b>一句话摘要：</b>这一天从早上七点半的"已到工位"开始，前半场由雷雷的半夜 emo 意外引爆<b>群主前任考古</b>，中午接力成 <b>110 迈追尾、后背钢钉与"再拉一次横幅"</b>的旧事复盘，下午转向<b>摩旅路线</b>与<b>排气改装</b>的装备局，中间穿插长乐被停播、"让群主开个公司"的接龙狂欢，夜里以一场从太舞雪票聊到螃蟹蟹膏的生活流收尾。
+    </p>
+
+    <div class="stats">
+      <div class="stat"><div class="n">931<small>条</small></div><div class="l">消息总数</div></div>
+      <div class="stat"><div class="n">11<small>人</small></div><div class="l">真人发言</div></div>
+      <div class="stat"><div class="n">15.1<small>h</small></div><div class="l">在线跨度</div></div>
+      <div class="stat"><div class="n">8<small>个</small></div><div class="l">重点话题</div></div>
+    </div>
+  </header>
+
+  <section>
+    <div class="sec-h"><h2>群聊画像</h2><span class="sub">07:19 — 22:24</span></div>
+    <div class="card">
+      <div class="chart">
+        <div class="bar-wrap"><div class="bar low" style="height:3%"></div></div>
+        <div class="bar-wrap"><div class="bar low" style="height:6%"></div></div>
+        <div class="bar-wrap"><div class="bar" style="height:29%"></div></div>
+        <div class="bar-wrap"><div class="bar" style="height:45%"></div></div>
+        <div class="bar-wrap"><div class="bar" style="height:99%"></div></div>
+        <div class="bar-wrap"><div class="bar low" style="height:12%"></div></div>
+        <div class="bar-wrap"><div class="bar" style="height:31%"></div></div>
+        <div class="bar-wrap"><div class="bar" style="height:32%"></div></div>
+        <div class="bar-wrap"><div class="bar" style="height:100%"></div></div>
+        <div class="bar-wrap"><div class="bar" style="height:58%"></div></div>
+        <div class="bar-wrap"><div class="bar low" style="height:13%"></div></div>
+        <div class="bar-wrap"><div class="bar" style="height:44%"></div></div>
+        <div class="bar-wrap"><div class="bar low" style="height:5%"></div></div>
+        <div class="bar-wrap"><div class="bar low" style="height:8%"></div></div>
+        <div class="bar-wrap"><div class="bar low" style="height:6%"></div></div>
+        <div class="bar-wrap"><div class="bar low" style="height:1%"></div></div>
+      </div>
+      <div class="xlab">
+        <span>7</span><span>8</span><span>9</span><span>10</span><span>11</span><span>12</span><span>13</span><span>14</span><span>15</span><span>16</span><span>17</span><span>18</span><span>19</span><span>20</span><span>21</span><span>22</span>
+      </div>
+      <div class="chart-foot">
+        两个尖峰：<b>11 点档 186 条</b>（群主前任瓜）与 <b>15 点档 188 条</b>（摩旅＋排气）。12 点、19 点两处"午休式静默"，19 点后进入低频生活流。
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="spk"><span class="nm">大允</span><span class="track"><span class="fill" style="width:100%"></span></span><span class="ct">240</span></div>
+      <div class="spk"><span class="nm">璐璐</span><span class="track"><span class="fill" style="width:82%"></span></span><span class="ct">196</span></div>
+      <div class="spk"><span class="nm">孙志强</span><span class="track"><span class="fill" style="width:68%"></span></span><span class="ct">163</span></div>
+      <div class="spk"><span class="nm">雷雷</span><span class="track"><span class="fill" style="width:38%"></span></span><span class="ct">92</span></div>
+      <div class="spk"><span class="nm">波妞</span><span class="track"><span class="fill" style="width:35%"></span></span><span class="ct">83</span></div>
+      <div class="spk"><span class="nm">李汪洋</span><span class="track"><span class="fill" style="width:22%"></span></span><span class="ct">52</span></div>
+      <div class="spk"><span class="nm">长乐</span><span class="track"><span class="fill" style="width:18%"></span></span><span class="ct">43</span></div>
+      <div class="spk"><span class="nm">P.F.L</span><span class="track"><span class="fill" style="width:14%"></span></span><span class="ct">33</span></div>
+      <div class="mix">
+        <span class="tag">文本 645</span><span class="tag">动画表情 134</span><span class="tag">引用回复 83</span>
+        <span class="tag">图片 47</span><span class="tag">视频 9</span><span class="tag">系统/拍一拍 7</span>
+        <span class="tag">链接·小程序·位置·名片 5</span>
+      </div>
+      <div class="chart-foot">
+        <b>大允</b>是当日"发动机"，一人贡献 25.8%；<b>璐璐</b>负责抛梗与复读（9 次接别人话），<b>孙志强</b>负责补细节与拆台，<b>李汪洋（群主）</b>发言少但每个话题都在场。群主一出现，消息密度立刻翻倍。
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-h"><h2>重点话题</h2><span class="sub">按讨论体量与信息密度排序</span></div>
+
+    <!-- 1 -->
+    <article class="card topic">
+      <div class="t-head">
+        <div class="t-no">01</div>
+        <div>
+          <h3 class="t-title">群主往事①：一场从"半夜 emo"升级的前任考古</h3>
+          <div class="t-meta">10:48–11:24（源头 09:34 起） · <b>7 人参与</b> · 当日信息量最大</div>
+        </div>
+      </div>
+      <div class="t-body">
+        <div class="row"><div class="k">背景</div><div class="v">雷雷自曝"昨儿半夜突然 emo 了"，并转发公众号文章《任何关系，到最后都是修无情道》。璐璐感叹"好安静，我以为我们永远有话说"，长乐接"待人如初是一件很难的事情""没跟我们说就是换人说了"。大允顺势把话题推向"雷总 想念某个前任了"，璐璐立刻把"允总／汪总／大强"逐个点名，群主被拖进场。</div></div>
+        <div class="row"><div class="k">观点</div><div class="v">
+          <b>大允</b>：抛出"群主为爱砸钱"的叙事——"群主住的酒店 一天价值一辆忍四""住了10天"，形容对方是"水蛭""给群主吸死了"（明显带调侃）。<br>
+          <b>璐璐</b>：给出一版完整剧本——"群主前妻貌美如花但蛇蝎心肠，卷了群主的钱跑了"，随后自己反问"这样对吗？"<br>
+          <b>李汪洋（当事人）</b>：当场否掉——"错"；自述"是之前对钱没什么概念 只会赚不会花""因为我攒的赶不上她花的 花完了"。被追问前妻视频时只说"发不了""我不配"。<br>
+          <b>孙志强</b>：补细节——"群主滑翔现在还是前妻名呢"；前妻曾在群主住院期间私信他，"问我欧林斯是有地儿买吗"。<br>
+          <b>长乐</b>：全程"我也想看"，追着要视频，最后以"好了 群主装死了"收场。
+        </div></div>
+        <div class="row disp"><div class="k">争议</div><div class="v">分手原因有两套说法：群友版"卷钱跑路"（璐璐），当事人版"花的比攒的多、钱花完了"（李汪洋）。<b>两者并不一致，且当事人口头否认了前者。</b></div></div>
+        <div class="row concl"><div class="k">结论</div><div class="v">没有结论，也不需要结论。当事人只承认消费远超积蓄，群友的"卷款"叙述属现场编排的玩笑；前妻视频始终没发，"群主装死"即为结局。</div></div>
+        <details>
+          <summary>查看原始片段（8 条）</summary>
+          <ul class="frag">
+            <li><span class="tm">11:01</span><span class="who">大允</span>"群主住的酒店 一天价值一辆忍四"</li>
+            <li><span class="tm">11:04</span><span class="who">大允</span>"群主住了10天"</li>
+            <li><span class="tm">11:07</span><span class="who">孙志强</span>"群主滑翔现在还是前妻名呢"</li>
+            <li><span class="tm">11:12</span><span class="who">璐璐</span>"群主前妻貌美如花但蛇蝎心肠，卷了群主的钱跑了"</li>
+            <li><span class="tm">11:12</span><span class="who">李汪洋</span>"错"</li>
+            <li><span class="tm">11:12</span><span class="who">李汪洋</span>"是之前对钱没什么概念 只会赚不会花"</li>
+            <li><span class="tm">11:14</span><span class="who">李汪洋</span>"因为我攒的赶不上她花的 花完了"</li>
+            <li><span class="tm">11:24</span><span class="who">长乐</span>"好了 群主装死了"</li>
+          </ul>
+        </details>
+      </div>
+    </article>
+
+    <!-- 2 -->
+    <article class="card topic">
+      <div class="t-head">
+        <div class="t-no">02</div>
+        <div>
+          <h3 class="t-title">群主往事②：110 迈追尾、后背钢钉与"再拉一次横幅"</h3>
+          <div class="t-meta">11:30–11:47、15:36–15:40 · <b>5 人参与</b> · 含健康安排</div>
+        </div>
+      </div>
+      <div class="t-body">
+        <div class="row"><div class="k">背景</div><div class="v">由讨论"欧林斯（Öhlins）减震"配件引出旧事故。大允回忆当年被群主追尾："我都快翘头了"，自己的欧林斯被撞歪、后转向灯"当啷着"，仍骑车去医院看汪洋。群里随后复原油门现场。</div></div>
+        <div class="row"><div class="k">观点</div><div class="v">
+          <b>大允</b>："110"（指速度），"吓死我了 我都快翘头了"；"当初 非要坐起来 手背撑的地，我们都以为他手断了"；"在救护车上 还惦记 上班呢"。<br>
+          <b>孙志强</b>："技术牛逼八十多迈怼你你没倒"，并追问"裤子湿了吗"（调侃"吓尿了"）。<br>
+          <b>李汪洋</b>：只交代伤情——"我后背不是有钉子么 之前撞大允""到年头儿了"，并同意"再拉一遍"横幅、当"拆钉纪念"。<br>
+          <b>七七</b>：把事故玩笑化——"是真的想上班吗？还是单纯的想给主管盖帽儿"。
+        </div></div>
+        <div class="row disp"><div class="k">争议</div><div class="v">追尾速度口径不一：孙志强说"八十多迈"，大允回"110"；雷雷提到的"2 月 5 号"是否即拆钉日期，聊天中未明确对应。<b>均为群友口述，无第三方信息。</b></div></div>
+        <div class="row concl"><div class="k">结论</div><div class="v">可以确认的是：群主过年期间要拆后背钢钉、只能在家休养，因此无法参加任何外出安排；群友计划"再拉一次横幅"作为纪念。速度与日期细节存疑。</div></div>
+        <details>
+          <summary>查看原始片段（6 条）</summary>
+          <ul class="frag">
+            <li><span class="tm">11:37</span><span class="who">孙志强</span>"技术牛逼八十多迈怼你你没倒"</li>
+            <li><span class="tm">11:44</span><span class="who">大允</span>"110"</li>
+            <li><span class="tm">11:47</span><span class="who">大允</span>"当时 非要坐起来，手背撑的地，我们都以为他手断了"</li>
+            <li><span class="tm">15:36</span><span class="who">李汪洋</span>"我后背不是有钉子么 之前撞大允" / "到年头儿了"</li>
+            <li><span class="tm">15:38</span><span class="who">李汪洋</span>"横幅我还有"</li>
+            <li><span class="tm">15:39</span><span class="who">李汪洋</span>"再拉一遍" → 雷雷："拆钉纪念"</li>
+          </ul>
+        </details>
+      </div>
+    </article>
+
+    <!-- 3 -->
+    <article class="card topic">
+      <div class="t-head">
+        <div class="t-no">03</div>
+        <div>
+          <h3 class="t-title">群主往事③：从"被主管挤兑"到辞职，一场装备攀比连续剧</h3>
+          <div class="t-meta">13:15–13:23 · <b>5 人参与</b> · 全部为第三方转述</div>
+        </div>
+      </div>
+      <div class="t-body">
+        <div class="row"><div class="k">背景</div><div class="v">大允贴图发问"群主在华为是不是也这么高工资"，话题迅速从薪资转向离职原因。</div></div>
+        <div class="row"><div class="k">观点</div><div class="v">
+          <b>孙志强</b>（叙述主力）："群主被部门主管挤兑走了""主管坐地铁上班他开奔驰s""好不容易主管换了个特斯拉model3 群主换了个 model s""然后给群主发配边疆了 给干呼和浩特去了""群主一生气辞职了"。<br>
+          <b>P.F.L</b>：接力补刀——"主管买了个883，群主买滑翔了""被贬了"。<br>
+          <b>波妞</b>："这和领导夹菜你转桌没区别了""老给主管盖帽儿"。<br>
+          <b>七七</b>：反讽收尾——"群主激励老板还需努力"。<br>
+          <b>李汪洋</b>：全程只回表情，未正面回应。
+        </div></div>
+        <div class="row disp"><div class="k">争议</div><div class="v">整段故事为群友转述，<b>当事人没有确认任何细节</b>；"被挤兑""发配呼和浩特""一气辞职"均属群内说法，不宜当作事实引用。</div></div>
+        <div class="row concl"><div class="k">结论</div><div class="v">群内形成共识性玩笑：群主的职场史就是一部"跟主管比车"的连续剧。事实层面：<b>未核实</b>。</div></div>
+        <details>
+          <summary>查看原始片段（5 条）</summary>
+          <ul class="frag">
+            <li><span class="tm">13:16</span><span class="who">孙志强</span>"群主被部门主管挤兑走了" / "主管坐地铁上班他开奔驰s"</li>
+            <li><span class="tm">13:17</span><span class="who">波妞</span>"这和领导夹菜你转桌没区别了。。"</li>
+            <li><span class="tm">13:19</span><span class="who">孙志强</span>"给干呼和浩特去了"</li>
+            <li><span class="tm">13:20</span><span class="who">孙志强</span>"群主一生气辞职了"</li>
+            <li><span class="tm">13:23</span><span class="who">孙志强</span>"我从他买骂到他卖"</li>
+          </ul>
+        </details>
+      </div>
+    </article>
+
+    <!-- 4 -->
+    <article class="card topic">
+      <div class="t-head">
+        <div class="t-no">04</div>
+        <div>
+          <h3 class="t-title">明年摩旅：青甘大环线 vs 东北大环线，以及"租车还是买台破水鸟"</h3>
+          <div class="t-meta">14:37–15:12 · <b>6 人参与</b> · 唯一有落地雏形的计划</div>
+        </div>
+      </div>
+      <div class="t-body">
+        <div class="row"><div class="k">背景</div><div class="v">大允发了一段"万里骑士年会"（安徽黄山）视频，感叹"全是有钱老头"。雷雷接"我也想不上班，天天出去骑车摩旅"，璐璐一针见血"少炒点股早就实现了"。随后孙志强说想骑去西藏，话题正式转向路线。</div></div>
+        <div class="row"><div class="k">观点</div><div class="v">
+          <b>大允</b>：主张明年 8 月出发，"气候最好"；给出两条线："1.青甘大环线 / 2.东北大环线"，青甘优先。<br>
+          <b>孙志强</b>：唯一硬指标是"找个好吃的多的地"；东北线附和"东北ktv好"。<br>
+          <b>璐璐</b>：老家黑龙江双鸭山，愿意当东北线地陪（"我要是去带你们去我家"，但"好像不路过我家"）；同时提醒"现在不能出发太冷了"。<br>
+          <b>波妞 / 群主</b>："现在就想出发"（群主 +1）。<br>
+          <b>用车方案</b>：孙志强想买台二手"老水鸟"或 1200ADV、骑完再卖，理由是"骑自己车心疼"；璐璐转述朋友建议"去摩旅之前租一辆，比自己买合适"；大允补一句"买卖还得倒手续"。
+        </div></div>
+        <div class="row disp"><div class="k">争议</div><div class="v">租车派（璐璐、大允）vs 买车派（孙志强）。买车派的情感理由"骑自己车心疼"其实站不住脚，被群友当作笑点。</div></div>
+        <div class="row concl"><div class="k">结论</div><div class="v">倾向<b>明年 8 月走青甘大环线</b>，东北线作为备选（可蹭璐璐老家）；用车方式未定。<b>没有具体日期、没有成行承诺</b>，属"许愿级"计划。</div></div>
+        <details>
+          <summary>查看原始片段（6 条）</summary>
+          <ul class="frag">
+            <li><span class="tm">14:51</span><span class="who">雷雷</span>"我也想不上班，天天出去骑车摩旅"</li>
+            <li><span class="tm">14:54</span><span class="who">璐璐</span>"少炒点股早就实现了"</li>
+            <li><span class="tm">14:57</span><span class="who">大允</span>"明年8月吧 气候最好"</li>
+            <li><span class="tm">15:03</span><span class="who">大允</span>"1.青甘大环线 / 2.东北大环线"</li>
+            <li><span class="tm">15:00</span><span class="who">孙志强</span>"我买个老水鸟。回来我再卖了"</li>
+            <li><span class="tm">15:01</span><span class="who">璐璐</span>"说去摩旅之前租一辆" / "比自己买合适"</li>
+          </ul>
+        </details>
+      </div>
+    </article>
+
+    <!-- 5 -->
+    <article class="card topic">
+      <div class="t-head">
+        <div class="t-no">05</div>
+        <div>
+          <h3 class="t-title">排气改装与 210 万"镇店车"：一天 448 块的浪漫</h3>
+          <div class="t-meta">16:24–16:52 · <b>4 人参与</b> · 典型"装备局"</div>
+        </div>
+      </div>
+      <div class="t-body">
+        <div class="row"><div class="k">背景</div><div class="v">大允在研究给滑翔换排气，P.F.L 主动当起"装备顾问"。</div></div>
+        <div class="row"><div class="k">观点</div><div class="v">
+          <b>P.F.L</b>：推荐闲鱼上一根滑翔用 FAB28，"这个牌子孤傲"；但自己也承认"这尾端太长了"；后来又发两张图"这俩二选一吧"，并顺势劝败"帅就对了换哈雷吧"。<br>
+          <b>大允</b>：嫌弃——"有点丑 说实话""超出箱子 太丑了""超级陷阱之前也一直推荐，但是太丑了"；审美转向"这个好~ 排气不要了 想要那个车"。<br>
+          <b>孙志强</b>：站现款——"现在这个挺好看的""这个好看"。<br>
+          <b>璐璐</b>：视觉派——"好像鲨鱼🦈 好帅"，并机智挡回推销"换个人劝"。<br>
+          <b>价格插曲</b>：金港镇店车标价"二百一十万"，P.F.L 拆算"210万的13年使用权，一年16万"，大允再拆"一天448块"。
+        </div></div>
+        <div class="row disp"><div class="k">争议</div><div class="v">纯审美分歧：长尾端"有个性"（P.F.L 的半推半就）vs "超出箱子太丑"（大允）。技术上无实质讨论。</div></div>
+        <div class="row concl"><div class="k">结论</div><div class="v">排气<b>没有下单</b>，倾向维持现款或换整车；210 万那台属"看车流口水"，无人当真。当日最贵的一句话是"一天 448 块"。</div></div>
+        <details>
+          <summary>查看原始片段（4 条）</summary>
+          <ul class="frag">
+            <li><span class="tm">16:29</span><span class="who">P.F.L</span>"闲鱼有根儿滑翔用的FAB28"</li>
+            <li><span class="tm">16:32</span><span class="who">大允</span>"对，超出箱子 太丑了 有点"</li>
+            <li><span class="tm">16:47</span><span class="who">大允</span>"这个好~ 排气不要了 想要那个车"</li>
+            <li><span class="tm">16:51</span><span class="who">大允</span>"一天448块"</li>
+          </ul>
+        </details>
+      </div>
+    </article>
+
+    <!-- 6 -->
+    <article class="card topic">
+      <div class="t-head">
+        <div class="t-no">06</div>
+        <div>
+          <h3 class="t-title">打工人生存实录：被停播、被换岗、以及"让群主开个公司"</h3>
+          <div class="t-meta">09:45–10:02、13:52–14:14、16:38、18:17–18:19 · <b>8 人参与</b> · 全天最长线</div>
+        </div>
+      </div>
+      <div class="t-body">
+        <div class="row"><div class="k">背景</div><div class="v">从早上"已到工位"的打卡仪式开始，这一天几乎每个时段都有一段"上班吐槽"。中午长乐被停播、下午孙志强换岗，把情绪推到高点。</div></div>
+        <div class="row"><div class="k">观点</div><div class="v">
+          <b>长乐</b>：直播被停——"老板不让我播了 说我身材不行""让我滚去后台打包了"；群友集体护犊子："他瞎吧""现在谁播呢发来，我们给你喷她去""我们就说要以前的主播"；长乐自我调侃"我自愧不如"。后续还爆出"你们居然都不加我好友"。<br>
+          <b>孙志强</b>："我换岗了 累他妈死我了"；璐璐问招不招人想跳槽去门头沟，他劝退"别来 工资低""缺掏大粪的"。<br>
+          <b>接龙梗</b>：14:04–14:14，孙志强起头"让群主开个公司咱们去他那上班"，长乐、P.F.L、波妞、七七、璐璐、大允依次复读，共 <b>7 次</b>；群主回"爪子精选"（谐音群名），大允补"瓜子三手车"。<br>
+          <b>准点下班派</b>：璐璐"今日工作已完成，剩下的留给明天吧""陪群友20分钟就下班"；孙志强反怼"今天没好好陪群友"；大允自曝"我一个月21天迟到21天"；波妞贡献当日最强金句（见下方）。
+        </div></div>
+        <div class="row disp"><div class="k">争议</div><div class="v">无实质争议，"跳槽"仅停留在口嗨：璐璐说想跳，孙志强直接劝退，无人跟进具体岗位。</div></div>
+        <div class="row concl"><div class="k">结论</div><div class="v">集体情绪 = "想下班、想跑路、想让群主当老板"，用接龙和玩笑消化，未产生任何实际行动。</div></div>
+        <details>
+          <summary>查看原始片段（6 条）</summary>
+          <ul class="frag">
+            <li><span class="tm">09:45</span><span class="who">长乐</span>"老板不让我播了 说我身材不行"</li>
+            <li><span class="tm">09:48</span><span class="who">孙志强</span>"现在谁播呢发来，我们给你喷她去"</li>
+            <li><span class="tm">14:04</span><span class="who">孙志强</span>"让群主开个公司咱们去他那上班"（后被 6 人复读）</li>
+            <li><span class="tm">14:15</span><span class="who">李汪洋</span>"爪子精选"</li>
+            <li><span class="tm">16:38</span><span class="who">璐璐</span>"陪群友20分钟就下班"</li>
+            <li><span class="tm">18:18</span><span class="who">波妞</span>"我每天都在问自己。。单位少了我能不能倒闭。。如果不能。。那我就下班！"</li>
+          </ul>
+        </details>
+      </div>
+    </article>
+
+    <!-- 7 -->
+    <article class="card topic">
+      <div class="t-head">
+        <div class="t-no">07</div>
+        <div>
+          <h3 class="t-title">过年落单：一场"群友谁带我过年"的公开招标</h3>
+          <div class="t-meta">15:27–15:36 · <b>6 人参与</b> · 唯一有情感重量的现实议题</div>
+        </div>
+      </div>
+      <div class="t-body">
+        <div class="row"><div class="k">背景</div><div class="v">璐璐突然宣布"我妈妈已经到海南了"，接着问"你们过年有出来玩的吗""有没有人跟我玩"。原因随后揭晓：母亲去海南长住（要待到明年夏天），父亲要上班去不了，"他俩让我选，我选谁都是错"，于是决定"干脆自己出去玩啵"。</div></div>
+        <div class="row"><div class="k">观点</div><div class="v">
+          <b>璐璐</b>："今年没法一起过了 我落单了""我选择了群友""群友谁带我过年"。<br>
+          <b>七七</b>：唯一给出明确承诺的人——"你想去哪儿叫我，我大概率都没啥事"。<br>
+          <b>李汪洋</b>：退出竞争——"我过年期间要拆钉子 只能在家休养了"。<br>
+          <b>雷雷</b>：试图共情，"我猜 璐璐就是不跟家人过年""跟我一样"，被璐璐一句"？？？？不是"当场否掉。<br>
+          <b>孙志强</b>：出馊主意"让他俩中间集合"，以及不正经的"阿姨要游艇宝贝吗"。
+        </div></div>
+        <div class="row disp"><div class="k">争议</div><div class="v">雷雷的"不跟家人过年"推断<b>被本人明确否认</b>；璐璐的实际情况是"父母分处两地、被迫选边"，不是主动不回家。此处易被误读，需注意。</div></div>
+        <div class="row concl"><div class="k">结论</div><div class="v">无具体方案，停留在"征集同伴"阶段。唯一有效响应来自七七；群主因拆钉确定缺席。</div></div>
+        <details>
+          <summary>查看原始片段（5 条）</summary>
+          <ul class="frag">
+            <li><span class="tm">15:27</span><span class="who">璐璐</span>"我妈妈已经到海南了" / "你们过年有出来玩的吗"</li>
+            <li><span class="tm">15:31</span><span class="who">璐璐</span>"我妈非要去海南 我爸上班去不了 然后他俩让我选" / "我选谁都是错。。。。"</li>
+            <li><span class="tm">15:32</span><span class="who">璐璐</span>"我选择了群友" / "群友谁带我过年"</li>
+            <li><span class="tm">15:35</span><span class="who">七七</span>"你想去哪儿叫我，我大概率都没啥事"</li>
+            <li><span class="tm">15:34</span><span class="who">李汪洋</span>"我过年期间要拆钉子 只能在家休养了"</li>
+          </ul>
+        </details>
+      </div>
+    </article>
+
+    <!-- 8 -->
+    <article class="card topic">
+      <div class="t-head">
+        <div class="t-no">08</div>
+        <div>
+          <h3 class="t-title">烟火气支线：太舞雪票、冷库手套与深夜螃蟹</h3>
+          <div class="t-meta">12:00–12:43、15:52–16:00、18:00–22:24 · <b>9 人参与</b> · 最长尾</div>
+        </div>
+      </div>
+      <div class="t-body">
+        <div class="row"><div class="k">背景</div><div class="v">装备局之外，全天穿插着密集的生活流：早餐拉面、午餐馅筋、下午南锣炸鸡蘸土豆泥汁、晚上中门寺石锅鱼与璐璐家的螃蟹。20:30 之后几乎只剩"吃"。</div></div>
+        <div class="row"><div class="k">观点</div><div class="v">
+          <b>滑雪比价</b>：孙志强晒太舞"两天酒店雪票"价格，大允对比自己当年"一天半760""周末去一趟就得一千多"，结论是太舞划算，还能蹭"免费的热可可"；万龙"一直很贵""现在雪道开的少"；云顶可以"翻开网兜子滑过去"；最早的启蒙地长城岭"很垃圾"（蹭朋友的 BJ40，雪鞋跟绊断手刹杆）。<br>
+          <b>装备测评</b>：波妞买了副冬季手套，璐璐鉴定为"冷库手套"，波妞自封"波妞严选"，承诺"我先替大家测评一下子"，璐璐表态"好用我也买"——一个标准的群内种草闭环。<br>
+          <b>螃蟹夜话</b>：璐璐晒蒸蟹，波妞连发"啊！！！插死我算了！！""请塞我嘴里"，雷雷附和"妞子太性情了"；随后进入严肃的蟹黄 vs 蟹膏之争——璐璐"黄最好吃，没有黄的话膏也行"，孙志强"那个我吃不了，糊嘴"，波妞形容蟹膏"白白的 粘粘的 糊一嘴"。
+        </div></div>
+        <div class="row disp"><div class="k">争议</div><div class="v">只有口味之争，没有立场之争。唯一"技术性分歧"是滑雪场性价比，大允与孙志强各站太舞/万龙，但都承认万龙"雪道开得少"。</div></div>
+        <div class="row concl"><div class="k">结论</div><div class="v">无结论，也不需要有。这段是全天最"像群"的部分：不比价、不站队，只负责把日子过得香一点。</div></div>
+        <details>
+          <summary>查看原始片段（5 条）</summary>
+          <ul class="frag">
+            <li><span class="tm">15:56</span><span class="who">大允</span>"太舞 有免费的热可可"</li>
+            <li><span class="tm">15:57</span><span class="who">孙志强</span>"现在万龙雪道开的少"</li>
+            <li><span class="tm">12:14</span><span class="who">波妞</span>"我先替大家测评一下子。。波妞严选！"</li>
+            <li><span class="tm">21:03</span><span class="who">波妞</span>"白白的 粘粘的 糊一嘴。。。"</li>
+            <li><span class="tm">21:13</span><span class="who">璐璐</span>"黄最好吃" / "没有黄的话。。。膏也行"</li>
+          </ul>
+        </details>
+      </div>
+    </article>
+  </section>
+
+  <section>
+    <div class="sec-h"><h2>今日金句</h2><span class="sub">原话照录，未改写</span></div>
+    <div class="q"><p>"我每天都在问自己。。单位少了我能不能倒闭。。如果不能。。那我就下班！"</p><div class="who"><b>波妞</b> 18:18</div></div>
+    <div class="q"><p>"上班 是挣窝囊费的"</p><div class="who"><b>大允</b> 18:19</div></div>
+    <div class="q"><p>"不花就赚的多"</p><div class="who"><b>李汪洋</b> 11:13 · 回应"怎么才能赚那么多"</div></div>
+    <div class="q"><p>"良心看给谁了 不能随便给"<br>"死了一个濒临绝种的温柔，多一个爱情杀手"</p><div class="who"><b>李汪洋</b> 11:10–11:12</div></div>
+    <div class="q"><p>"待人如初是一件很难的事情"<br>"没跟我们说就是换人说了"</p><div class="who"><b>长乐</b> 09:37</div></div>
+    <div class="q"><p>"影响心情。心情不好影响身体"</p><div class="who"><b>孙志强</b> 09:08 · 解释为什么槟榔要"慢慢戒"</div></div>
+    <div class="q"><p>"我眼里只有吃喝玩乐 ，没有情情爱爱"</p><div class="who"><b>大允</b> 10:37</div></div>
+    <div class="q"><p>"我每天都是衣服还没脱就先跟群友聊天了"</p><div class="who"><b>璐璐</b> 08:54</div></div>
+    <div class="q"><p>"我选谁都是错。。。。"<br>"干脆自己出去玩啵。。。。。。。"</p><div class="who"><b>璐璐</b> 15:31–15:32</div></div>
+    <div class="q"><p>"我会骂街！挨打我自己会跑～"</p><div class="who"><b>波妞</b> 18:30 · 报名"圣诞节捉奸活动"时</div></div>
+    <div class="q"><p>"主管坐地铁上班他开奔驰s"</p><div class="who"><b>孙志强</b> 13:16</div></div>
+    <div class="q"><p>"今天没好好陪群友"</p><div class="who"><b>孙志强</b> 16:38</div></div>
+  </section>
+
+  <section>
+    <div class="sec-h"><h2>争议与待核实</h2><span class="sub">聊天观点 ≠ 已核实事实</span></div>
+    <div class="warnbox">
+      <ol>
+        <li><b>群主前妻"卷钱跑路"？</b>——璐璐的版本被当事人李汪洋当场回"错"，本人给的原因是"我攒的赶不上她花的"。<b>以当事人说法为准，但两者均无外部印证。</b></li>
+        <li><b>追尾速度到底是 80 多迈还是 110？</b>——孙志强说"八十多迈"，大允说"110"。同一事件的两种口径，无法判定。</li>
+        <li><b>群主离职原因</b>——"被主管挤兑""发配呼和浩特后辞职"全部出自群友转述，当事人全程未回应，仅发表情。</li>
+        <li><b>"2 月 5 号"是否拆钉日</b>——雷雷提到该日期，未说明指向，群主未确认。</li>
+        <li><b>金额类信息</b>——"一天一辆忍4""一年花一百多万""年薪""210 万车"均为群内口述或图中数字，未核实。</li>
+        <li><b>图片与视频内容</b>——当日 47 张图、9 段视频无法逐条核验内容，本报告仅依据上下文文字与群友评论解读，未对画面作事实判断。</li>
+        <li><b>引用与转发</b>——83 条为引用回复（原话已在"原始片段"中注明引用来源）；1 条公众号链接（《任何关系，到最后都是修无情道》）与 1 条闲鱼小程序为转发内容，非本人原创观点，未计入任何人的"发言主张"。</li>
+      </ol>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-h"><h2>轻松时刻</h2><span class="sub">过滤刷屏后保留的梗</span></div>
+    <div class="fun">
+      <span class="pill">"让群主开个公司咱们去他那上班" ×7 连复读</span>
+      <span class="pill">"忍 4"成为计量单位</span>
+      <span class="pill">证书寄到付，"辗转1个月 邮费还是没省掉"</span>
+      <span class="pill">"侦探强哥"中门寺偶遇现场</span>
+      <span class="pill">"圣诞老奶"骑车 COS 提案</span>
+      <span class="pill">"豆包，调到农村频道"</span>
+      <span class="pill">02 年同事穿骑行靴一整天 → "脚气炸弹"</span>
+      <span class="pill">群主滑翔"还是前妻名"</span>
+    </div>
+  </section>
+
+  <footer>
+    <b>统计口径</b>：数据源为 2026-11-09 00:00–23:59（Asia/Shanghai）的群聊导出记录，群「瓜子精选」（58586616554@chatroom），共 <b>931 条</b>，时间跨度 07:19:38–22:24:54。<br>
+    其中系统消息 5 条、"拍一拍"提示 2 条（发送者显示为"未知发送者"）不计入真人发言，故真人发言为 <b>924 条</b>，发言人 11 位。人均 84 条，中位发言者约 52 条。<br>
+    纯表情 134 条（占 14.4%），完全重复文本以"让群主开个公司咱们去他那上班"（7 次）为最；复读行为集中在璐璐（9 次）、波妞（6 次）。<br>
+    人名已按群内常用称呼统一显示：大允、波妞、李汪洋、七七等，不再保留备注前缀与表情符号。<br>
+    本报告仅基于 11 月 9 日单日记录，未引入其他日期内容；所有引述均为原话摘录，未改写语义；涉及他人的私人信息（前任、收入、健康）已按"群内转述"处理，不代表事实认定。<br>
+    生成时间：2026-11-10 14:45 · 仅供群内回顾使用。
+  </footer>
+
+</div>
+</body>
+</html>

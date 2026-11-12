@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>瓜子精选 · 群聊日报 2026-11-11</title>
+<style>
+  :root{
+    --bg:#F6F2EA;
+    --paper:#FFFFFF;
+    --ink:#2B2620;
+    --ink-2:#5C5348;
+    --ink-3:#8B8175;
+    --line:#EAE0D1;
+    --accent:#B65A26;
+    --accent-soft:#FBEEE3;
+    --green:#2F6B58;
+    --green-soft:#EAF3EF;
+    --warn:#9A5B12;
+    --warn-soft:#FDF3E2;
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html,body{margin:0;padding:0}
+  body{
+    background:
+      radial-gradient(900px 420px at 100% -8%, #FCEFE1 0%, rgba(252,239,225,0) 60%),
+      radial-gradient(700px 380px at -10% 8%, #EDF3EE 0%, rgba(237,243,238,0) 55%),
+      var(--bg);
+    color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Source Han Sans SC",sans-serif;
+    font-size:16px;
+    line-height:1.85;
+    letter-spacing:.01em;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:720px;margin:0 auto;padding:22px 16px 56px}
+
+  .head{padding:6px 4px 20px;border-bottom:1px solid var(--line);margin-bottom:26px}
+  .kicker{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--ink-3);letter-spacing:.14em;text-transform:uppercase}
+  .dot{width:7px;height:7px;border-radius:50%;background:var(--accent);display:inline-block}
+  h1{
+    font-size:30px;line-height:1.3;margin:12px 0 6px;font-weight:800;letter-spacing:.02em;
+  }
+  h1 .thin{font-weight:400;color:var(--ink-3);font-size:17px;display:block;margin-top:6px;letter-spacing:.06em}
+  .lede{
+    margin:18px 0 0;font-size:15.5px;color:var(--ink-2);
+    background:linear-gradient(180deg,#FFFDF8,#FFF9F0);
+    border:1px solid var(--line);border-left:3px solid var(--accent);
+    border-radius:12px;padding:15px 16px;
+  }
+  .lede b{color:var(--ink)}
+
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:22px 0 8px}
+  .stat{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:13px 10px;text-align:center}
+  .stat .n{font-size:22px;font-weight:800;letter-spacing:.01em;line-height:1.2}
+  .stat .n small{font-size:11px;font-weight:600;color:var(--ink-3);margin-left:2px}
+  .stat .l{font-size:11.5px;color:var(--ink-3);margin-top:3px;letter-spacing:.04em}
+
+  section{margin-top:34px}
+  .sec-h{display:flex;align-items:baseline;gap:10px;margin:0 0 14px;padding-left:2px}
+  .sec-h h2{font-size:18px;margin:0;font-weight:800;letter-spacing:.03em}
+  .sec-h .idx{font-size:11px;color:#fff;background:var(--ink);border-radius:5px;padding:1px 6px;letter-spacing:.08em;transform:translateY(-2px)}
+  .sec-h .sub{font-size:12px;color:var(--ink-3);margin-left:auto}
+
+  .card{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:18px 16px;margin-bottom:14px;box-shadow:0 1px 2px rgba(60,45,25,.03)}
+
+  .chart{display:flex;align-items:flex-end;gap:4px;height:96px;margin:6px 0 2px}
+  .bar-wrap{flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;height:100%}
+  .bar{width:100%;border-radius:3px 3px 0 0;background:linear-gradient(180deg,#D98A50,#B65A26);min-height:2px}
+  .bar.low{background:linear-gradient(180deg,#D9CDBC,#C3B5A2)}
+  .xlab{display:flex;gap:4px;margin-top:6px}
+  .xlab span{flex:1;text-align:center;font-size:10px;color:var(--ink-3)}
+  .chart-foot{font-size:12.5px;color:var(--ink-3);margin-top:10px;border-top:1px dashed var(--line);padding-top:10px}
+
+  .spk{display:flex;align-items:center;gap:10px;margin:9px 0;font-size:13.5px}
+  .spk .nm{width:74px;flex:0 0 74px;color:var(--ink-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .spk .track{flex:1;height:9px;background:#F2ECE1;border-radius:6px;overflow:hidden}
+  .spk .fill{height:100%;border-radius:6px;background:linear-gradient(90deg,#E0A26C,#B65A26)}
+  .spk .ct{width:52px;text-align:right;font-size:12px;color:var(--ink-3);flex:0 0 52px}
+  .mix{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+  .tag{font-size:12px;color:var(--ink-2);background:#F7F1E7;border:1px solid var(--line);border-radius:999px;padding:3px 10px}
+
+  .topic{position:relative;padding-top:0}
+  .t-head{display:flex;gap:12px;align-items:flex-start;margin-bottom:4px}
+  .t-no{
+    flex:0 0 34px;height:34px;border-radius:10px;background:var(--accent-soft);color:var(--accent);
+    display:flex;align-items:center;justify-content:center;font-weight:800;font-size:15px;
+    border:1px solid #F1D8C4;
+  }
+  .t-title{font-size:17px;font-weight:800;line-height:1.45;margin:1px 0 0}
+  .t-meta{font-size:11.5px;color:var(--ink-3);margin-top:5px;letter-spacing:.02em}
+  .t-meta b{color:var(--ink-2);font-weight:600}
+  .t-body{margin-top:14px}
+  .row{display:flex;gap:10px;margin:11px 0}
+  .row .k{
+    flex:0 0 46px;font-size:11.5px;font-weight:700;color:var(--accent);
+    letter-spacing:.12em;padding-top:2px;
+  }
+  .row .v{flex:1;font-size:14.5px;color:var(--ink-2);line-height:1.8}
+  .row .v b{color:var(--ink);font-weight:700}
+  .row.concl .k{color:var(--green)}
+  .row.concl .v{
+    background:var(--green-soft);border-radius:10px;padding:9px 12px;color:#254E42;
+  }
+  .row.disp .v{background:var(--warn-soft);border-radius:10px;padding:9px 12px;color:#7A4A10}
+
+  details{margin-top:12px;border-top:1px dashed var(--line);padding-top:11px}
+  details summary{
+    cursor:pointer;list-style:none;font-size:13px;color:var(--accent);font-weight:600;
+    display:flex;align-items:center;gap:6px;outline:none;
+  }
+  details summary::-webkit-details-marker{display:none}
+  details summary::before{content:"▸";font-size:10px;transition:transform .2s}
+  details[open] summary::before{transform:rotate(90deg)}
+  .frag{margin:10px 0 0;padding:0;list-style:none}
+  .frag li{font-size:13.5px;color:var(--ink-2);padding:6px 0 6px 12px;border-left:2px solid #F0E5D6;margin-bottom:5px;line-height:1.75}
+  .frag li .tm{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;color:var(--ink-3);margin-right:6px}
+  .frag li .who{color:var(--accent);font-weight:600;margin-right:5px}
+
+  .q{background:var(--paper);border:1px solid var(--line);border-left:3px solid #E0A26C;border-radius:0 14px 14px 0;padding:13px 15px;margin-bottom:10px}
+  .q p{margin:0;font-size:15px;line-height:1.8;color:var(--ink)}
+  .q .who{font-size:12px;color:var(--ink-3);margin-top:7px;display:flex;gap:8px;align-items:center}
+  .q .who b{color:var(--green);font-weight:700;font-size:12.5px}
+
+  .warnbox{background:#FFFCF6;border:1px solid #F0DCC0;border-radius:14px;padding:4px 16px 12px}
+  .warnbox ol{margin:10px 0 0;padding-left:20px}
+  .warnbox li{font-size:14px;color:var(--ink-2);margin-bottom:9px;line-height:1.78}
+  .warnbox li b{color:var(--ink)}
+
+  .fun{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px}
+  .fun .pill{
+    font-size:13px;background:var(--paper);border:1px solid var(--line);
+    border-radius:999px;padding:5px 12px;color:var(--ink-2);
+  }
+
+  footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);font-size:11.5px;color:var(--ink-3);line-height:1.9}
+  footer b{color:var(--ink-2)}
+
+  @media (max-width:400px){
+    h1{font-size:25px}
+    .stats{grid-template-columns:repeat(2,1fr)}
+    .spk .nm{width:62px;flex-basis:62px;font-size:12.5px}
+    .row .k{flex-basis:40px;font-size:11px}
+  }
+  @media print{
+    body{background:#fff}
+    .wrap{max-width:none;padding:0}
+    details{display:block}
+    details summary{display:none}
+    details > *{display:block}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="head">
+    <div class="kicker"><span class="dot"></span>群聊日报 · 2026 年 11 月 11 日 · 星期三 · 光棍节</div>
+    <h1>瓜子精选
+      <span class="thin">一天 17.1 小时、935 条消息：光棍节全员吃瓜，雷雷"6 天 5 面"官宣阵亡</span>
+    </h1>
+    <p class="lede">
+      <b>一句话摘要：</b>光棍节全员在线：上午<b>日报第二期准时发榜</b>引爆排名内卷，随后七七贡献<b>"相亲路上撞 Q8"惨案</b>——"相个亲出去 20 万"；中午"新疆妞跳舞"绝版表情包考古，波妞羊排四连拍蝉联美食台柱，雷雷顺势组局<b>廊坊炒羊蝎子三人行</b>；下午璐璐开启<b>光棍节骚话批发</b>，HH 一句"西地那非还是他达拉非"引爆药罐文学；晚上<b>追焦大瓜</b>宣判"拉面哥身败名裂"，并诞生新群规"骑车请在群里打卡"；深夜雷雷复盘<b>"6 天 5 面"失恋全过程</b>，诊断结论由本人签署："恋爱脑真得治了"。
+    </p>
+
+    <div class="stats">
+      <div class="stat"><div class="n">935<small>条</small></div><div class="l">消息总数</div></div>
+      <div class="stat"><div class="n">11<small>人</small></div><div class="l">真人发言</div></div>
+      <div class="stat"><div class="n">17.1<small>h</small></div><div class="l">在线跨度</div></div>
+      <div class="stat"><div class="n">6<small>个</small></div><div class="l">重点话题</div></div>
+    </div>
+  </header>
+
+  <section>
+    <div class="sec-h"><h2>群聊画像</h2><span class="sub">06:50 — 23:58（尾声至次日 00:34）</span></div>
+    <div class="card">
+      <div class="chart">
+        <div class="bar-wrap"><div class="bar low" style="height:1%"></div></div>
+        <div class="bar-wrap"><div class="bar low" style="height:2%"></div></div>
+        <div class="bar-wrap"><div class="bar low" style="height:7%"></div></div>
+        <div class="bar-wrap"><div class="bar low" style="height:22%"></div></div>
+        <div class="bar-wrap"><div class="bar" style="height:49%"></div></div>
+        <div class="bar-wrap"><div class="bar" style="height:100%"></div></div>
+        <div class="bar-wrap"><div class="bar low" style="height:44%"></div></div>
+        <div class="bar-wrap"><div class="bar low" style="height:17%"></div></div>
+        <div class="bar-wrap"><div class="bar low" style="height:34%"></div></div>
+        <div class="bar-wrap"><div class="bar low" style="height:35%"></div></div>
+        <div class="bar-wrap"><div class="bar" style="height:69%"></div></div>
+        <div class="bar-wrap"><div class="bar" style="height:89%"></div></div>
+        <div class="bar-wrap"><div class="bar low" style="height:15%"></div></div>
+        <div class="bar-wrap"><div class="bar low" style="height:22%"></div></div>
+        <div class="bar-wrap"><div class="bar low" style="height:19%"></div></div>
+        <div class="bar-wrap"><div class="bar low" style="height:19%"></div></div>
+        <div class="bar-wrap"><div class="bar" style="height:87%"></div></div>
+        <div class="bar-wrap"><div class="bar" style="height:64%"></div></div>
+      </div>
+      <div class="xlab">
+        <span>6</span><span>7</span><span>8</span><span>9</span><span>10</span><span>11</span><span>12</span><span>13</span><span>14</span><span>15</span><span>16</span><span>17</span><span>18</span><span>19</span><span>20</span><span>21</span><span>22</span><span>23</span>
+      </div>
+      <div class="chart-foot">
+        光棍节四峰：<b>11 点档 134 条</b>（撞 Q8 惨案）、<b>17 点档 119 条</b>（骚话复读＋猎奇片）、<b>22 点档 116 条</b>（追焦大瓜）、<b>23 点档 86 条</b>（雷雷失恋复盘）。18 点反而只有 20 条——正是雷雷廊坊局的饭点，全员安静等上菜。
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="spk"><span class="nm">大允</span><span class="track"><span class="fill" style="width:100%"></span></span><span class="ct">225</span></div>
+      <div class="spk"><span class="nm">璐璐</span><span class="track"><span class="fill" style="width:84%"></span></span><span class="ct">188</span></div>
+      <div class="spk"><span class="nm">孙志强</span><span class="track"><span class="fill" style="width:59%"></span></span><span class="ct">133</span></div>
+      <div class="spk"><span class="nm">雷雷</span><span class="track"><span class="fill" style="width:49%"></span></span><span class="ct">111</span></div>
+      <div class="spk"><span class="nm">波妞</span><span class="track"><span class="fill" style="width:43%"></span></span><span class="ct">97</span></div>
+      <div class="spk"><span class="nm">李汪洋</span><span class="track"><span class="fill" style="width:27%"></span></span><span class="ct">61</span></div>
+      <div class="spk"><span class="nm">七七</span><span class="track"><span class="fill" style="width:26%"></span></span><span class="ct">58</span></div>
+      <div class="spk"><span class="nm">P.F.L</span><span class="track"><span class="fill" style="width:17%"></span></span><span class="ct">38</span></div>
+      <div class="spk"><span class="nm">长乐</span><span class="track"><span class="fill" style="width:4%"></span></span><span class="ct">9</span></div>
+      <div class="spk"><span class="nm">HH</span><span class="track"><span class="fill" style="width:3%"></span></span><span class="ct">7</span></div>
+      <div class="mix">
+        <span class="tag">文本 651</span><span class="tag">动画表情 125</span><span class="tag">引用回复 76</span>
+        <span class="tag">图片 64</span><span class="tag">视频 4</span><span class="tag">语音 2</span>
+        <span class="tag">链接·位置·聊天记录等 5</span><span class="tag">拍一拍 4</span>
+      </div>
+      <div class="chart-foot">
+        <b>大允</b>三连霸榜但"仅"225 条（昨日 271）；最大黑马是<b>雷雷</b>——54 → 111 条翻倍，廊坊局实拍加深夜失恋复盘一次贡献完。<b>HH</b> 全天只说 7 句话，其中一句"西地那非么？还是他达拉非"足以名垂群史。
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-h"><h2>重点话题</h2><span class="sub">按讨论体量与信息密度排序</span></div>
+
+    <!-- 1 -->
+    <article class="card topic">
+      <div class="t-head">
+        <div class="t-no">01</div>
+        <div>
+          <h3 class="t-title">日报第二期准时发榜：排行榜内卷与"真名 bug"</h3>
+          <div class="t-meta">09:01–10:35 · <b>8 人参与</b> · 固定节目正式化</div>
+        </div>
+      </div>
+      <div class="t-body">
+        <div class="row"><div class="k">背景</div><div class="v">孙志强上班第一件事 @璐璐 催更"日报"；璐璐 09:45 报告"我刚被领导叫去开会了 来晚了"但仍按时交作业——"瓜子精选11月10日 日报"（新页面 gz_2026-11-10）正式挂上网址。七七感叹"璐璐在群里也要被迫上班了"，孙志强盖章"有能力的人在哪里都被需要"。</div></div>
+        <div class="row"><div class="k">观点</div><div class="v">
+          <b>大允</b>：看榜单配图"好像那个古代的衙役"，发现自己是"约会经济学"词条本人后截图文乐——"哈哈哈哈""完了 我又是第一"。<br>
+          <b>雷雷</b>："这是专门为潜水群友准备的""我得加加油了"（刚签完假条）。<br>
+          <b>璐璐 / 孙志强</b>：核对排名——"咱俩一样啊""192""你们把我挤下去了 我成第三了"；璐璐发出灵魂拷问"大允咋那么能聊？！""他上班最晚结果聊的最多"，孙志强酸"他工资还高呢啊"（雷雷复读），"心里不平衡了"。<br>
+          <b>李汪洋</b>："怎么就我和强哥用真名"；璐璐解释"它这个是识别我的备注的""大强我俩没有好友，他网名是本命"，承诺"明天给你俩改了"。
+        </div></div>
+        <div class="row disp"><div class="k">争议</div><div class="v">榜单人名基于璐璐的微信备注自动生成，群主与孙志强显示为本名属"显示 bug"，已列入修复计划；排名本身无争议，只有内卷。</div></div>
+        <div class="row concl"><div class="k">结论</div><div class="v">日报第二期按时交付，<b>排行榜正式成为内卷工具</b>——雷雷当场立志"得加加油了"，群主已预约改名服务。</div></div>
+        <details>
+          <summary>查看原始片段（6 条）</summary>
+          <ul class="frag">
+            <li><span class="tm">09:01</span><span class="who">孙志强</span>"@撸璐 日报"</li>
+            <li><span class="tm">09:45</span><span class="who">璐璐</span>"我刚被领导叫去开会了 来晚了"（附日报链接）</li>
+            <li><span class="tm">09:50</span><span class="who">李汪洋</span>"怎么就我和强哥用真名"</li>
+            <li><span class="tm">10:29</span><span class="who">大允</span>"约会经济学 哈哈哈" / "完了 我又是第一"</li>
+            <li><span class="tm">10:30</span><span class="who">雷雷</span>"这是专门为潜水群友准备的"</li>
+            <li><span class="tm">10:31</span><span class="who">璐璐</span>"他上班最晚结果聊的最多"</li>
+          </ul>
+        </details>
+      </div>
+    </article>
+
+    <!-- 2 -->
+    <article class="card topic">
+      <div class="t-head">
+        <div class="t-no">02</div>
+        <div>
+          <h3 class="t-title">七七"相亲路上撞 Q8"惨案：想装波大的，结果拉了坨大的</h3>
+          <div class="t-meta">10:53–11:31 · <b>6 人参与</b> · 光棍节第一惨案</div>
+        </div>
+      </div>
+      <div class="t-body">
+        <div class="row"><div class="k">背景</div><div class="v">七七晒车上新装的车机，雷雷问"你为啥要装个车机"，七七答"以防交警欺负我让我认次责"——由此牵出去年的一桩旧案。</div></div>
+        <div class="row"><div class="k">观点</div><div class="v">
+          <b>七七</b>（当事人自述）："去年撞我内车是借的人家4S店的试驾车，就一个交强险""交警明显偏袒汽车司机一直吓唬我""着急去相亲路上给我撞了""大灯让我干碎了""给4S店修车花了14万""那个人花的 他全责""所以这要给我整个次责我要倾家荡产了""相个亲出去20万"；总结"想装波大的""结果拉了坨大的"。<br>
+          <b>P.F.L</b>："是不是只要没走最右侧车道都会给摩托车个次责""关键这钱还没花相亲对象身上""毕竟装逼是第一生产力嘛"。<br>
+          <b>李汪洋</b>："彩礼花路上了""大哥说花都花了 那就跟你相亲吧@🖤七七呢。"（七七、大允相继复读）。<br>
+          <b>璐璐</b>："难怪那个光头打听强子""真有人租车出来装逼"。<br>
+          <b>彩蛋</b>：孙志强晒偷拍图（大允"哈哈哈哈草还偷拍"）；大允"帕加尼没见过 但是我知道帕尼尼""当初就是天天吃帕尼尼 胖了20斤""我刚上班的时候108斤"——璐璐"？神tm20斤"；P.F.L 与大允研究车灯"像钢铁侠胸口内个反应堆""这能改车上行了"，璐璐"这是找到知音了"。
+        </div></div>
+        <div class="row disp"><div class="k">争议</div><div class="v">撞车细节（Q8、修车 14 万、对方全责、相亲目的）均为七七口述，无凭证；大允当场表示"怎么感觉好像听你说过 这么熟悉呢"，故事存在"复讲"嫌疑（七七答"我不记得了"）。</div></div>
+        <div class="row concl"><div class="k">结论</div><div class="v">群内共识：借试驾车去相亲属于高风险投资；"装车机以防认次责"的续命逻辑获得默许。惨案成本被钉在群史——<b>"相个亲出去 20 万"</b>。</div></div>
+        <details>
+          <summary>查看原始片段（7 条）</summary>
+          <ul class="frag">
+            <li><span class="tm">11:01</span><span class="who">七七</span>"去年撞我内车是借的人家4S店的试驾车，就一个交强险"</li>
+            <li><span class="tm">11:13</span><span class="who">七七</span>"大灯让我干碎了" / "给4S店修车花了14万"</li>
+            <li><span class="tm">11:14</span><span class="who">七七</span>"相个亲出去20万"</li>
+            <li><span class="tm">11:17</span><span class="who">李汪洋</span>"大哥说花都花了 那就跟你相亲吧@🖤七七呢。"</li>
+            <li><span class="tm">11:18</span><span class="who">七七</span>"想装波大的" / "结果拉了坨大的"</li>
+            <li><span class="tm">11:20</span><span class="who">P.F.L</span>"毕竟装逼是第一生产力嘛"</li>
+            <li><span class="tm">11:24</span><span class="who">大允</span>"帕加尼没见过 但是我知道帕尼尼"</li>
+          </ul>
+        </details>
+      </div>
+    </article>
+
+    <!-- 3 -->
+    <article class="card topic">
+      <div class="t-head">
+        <div class="t-no">03</div>
+        <div>
+          <h3 class="t-title">美食频道全记录：绝版表情包、羊排四连拍与廊坊三人局</h3>
+          <div class="t-meta">11:45–19:15 · <b>9 人参与</b> · 全天最长线</div>
+        </div>
+      </div>
+      <div class="t-body">
+        <div class="row"><div class="k">背景</div><div class="v">孙志强晒门头沟特色"擦硌"棒子面，连发两家宝藏餐厅链接（青英餐厅、滩羊铺子），其中"晚上吃有新疆妞跳舞"一句炸出群史文物——璐璐"新疆妞跳舞表情包，汪洋给做的"。</div></div>
+        <div class="row"><div class="k">观点</div><div class="v">
+          <b>绝版考古</b>：<b>大允</b>"绝版了已经 原视频已经删了"，<b>李汪洋</b>"我也删了[破涕为笑]"；璐璐发视频后秒撤回——"看完我撤回了"；<b>波妞</b>"？？？我没看见！！！[裂开][裂开]""光看吃什麽了！耽误事儿！！""再发一遍～～"；璐璐松口"我不撤回了 你们看吧"；波妞验收"哦哟哟～真带劲～""该说不说。。我也对着镜子扭了两下。。一言难尽"；璐璐追加"打屁股那个视频我找找""好的 没了"。<br>
+          <b>午餐</b>：波妞滩羊铺子羊排四连拍"开饭！！"，大允云端点评"他家辣椒丝 是灵魂""他家羊排特别嫩""吃吧 宝藏小店"，雷璐双复读"看着就好吃"×3，璐璐封号"波妞美食扛把子"。<br>
+          <b>晚餐组局</b>：雷雷 13:59 宣布"今晚决定去廊坊吃炒羊蝎子了"，七七"今天几号老婆作陪啊"（璐璐、李汪洋同问），雷雷"从美食频道拐到吃瓜频道""今天过节"；16:36"晚上又约了一个姐姐去干饭"，大允重新断句"晚上又约饭了 去干一个姐姐"，七七"晚上过完就是新老婆了吧"，雷雷"不要老婆了 我悟了 还是群友好"，大允"一夜情 和 夜夜情 的区别"，璐璐"可以跟群友谈恋爱吗？有这种群规吗"，波妞"太麻烦了。。还得给群友花钱。。"大允"还得吃药"。<br>
+          <b>廊坊实况</b>：18:42 雷雷"我到啦"晒三人局实拍，李汪洋"看看嫂子""还带了娃来的？"雷雷"那是妹妹"，李汪洋"雷雷只在我们看不到的地方发光"；19:15 发定位"兄弟姐妹们一定得来吃吃"；大允、波妞"火锅的下一顿 就吃这个"，大允"不下雨 能都骑车去吗 别开车了 没意思"孙志强"骑"。<br>
+          <b>火锅变数</b>：孙志强 19:46"火锅我好像不中了[流泪] 明天开始加班13天"，璐璐"天塌了 没你少了一员猛将"。
+        </div></div>
+        <div class="row disp"><div class="k">争议</div><div class="v">廊坊局"姐姐""妹妹"的身份未说明（次日雷雷复盘时另有交代，见话题 06）；"新疆妞跳舞"原视频已删，璐璐转发版仅群内可见，未公开流传。</div></div>
+        <div class="row concl"><div class="k">结论</div><div class="v">波妞蝉联美食频道台柱；雷雷廊坊局成行并交回四连拍作业；<b>"火锅的下一顿"</b>预定了下一个集体饭局，"骑车去、不开车"获口头全票；孙志强因 13 天加班确认缺席下周六火锅。</div></div>
+        <details>
+          <summary>查看原始片段（8 条）</summary>
+          <ul class="frag">
+            <li><span class="tm">12:02</span><span class="who">璐璐</span>"新疆妞跳舞表情包，汪洋给做的"</li>
+            <li><span class="tm">12:03</span><span class="who">大允</span>"绝版了已经" / "原视频已经删了"</li>
+            <li><span class="tm">12:06</span><span class="who">璐璐</span>"看完我撤回了。。。。"</li>
+            <li><span class="tm">12:07</span><span class="who">波妞</span>"？？？我没看见！！！[裂开][裂开]"</li>
+            <li><span class="tm">12:35</span><span class="who">波妞</span>"该说不说。。我也对着镜子扭了两下。。一言难尽。。。"</li>
+            <li><span class="tm">13:11</span><span class="who">大允</span>"他家辣椒丝 是灵魂" / "他家羊排特别嫩"</li>
+            <li><span class="tm">16:36</span><span class="who">雷雷</span>"晚上又约了一个姐姐去干饭"</li>
+            <li><span class="tm">18:56</span><span class="who">李汪洋</span>"雷雷只在我们看不到的地方发光"</li>
+          </ul>
+        </details>
+      </div>
+    </article>
+
+    <!-- 4 -->
+    <article class="card topic">
+      <div class="t-head">
+        <div class="t-no">04</div>
+        <div>
+          <h3 class="t-title">光棍节下午茶：工位娃娃攀比、骚话批发与"药罐文学"</h3>
+          <div class="t-meta">14:25–17:40 · <b>9 人参与</b> · 全天最"炸裂"时段</div>
+        </div>
+      </div>
+      <div class="t-body">
+        <div class="row"><div class="k">背景</div><div class="v">波妞晒"12点到单位 吃饭 吃完就卧倒"，大允"啥神仙单位啊"；随后璐璐晒工位娃娃，攀比升级，接着她开启了光棍节特供的骚话批发业务。</div></div>
+        <div class="row"><div class="k">观点</div><div class="v">
+          <b>工位攀比</b>：<b>璐璐</b>"我这都算少的了""大允给大家展示一下你的工位[微笑] 全他妈是娃娃"；<b>大允</b>"你们加起来 应该都没我多？""等我开完会 回去拍"；<b>李汪洋</b>"光秃秃"；<b>七七</b>"破电脑玩消消乐都卡"；<b>雷雷</b>"完了 我的桌子跟我发型一致"；璐璐质疑"你这些都是小妹妹送的吧[白眼]"（雷雷复读），大允"我都不认识什么小妹妹""没扔 藏起来了"；大允晒手办"照着这个照片做的 一模一样"，璐璐"照片谁给你拍的呀[白眼]不会是你那个不可说名字的前男友吧"七七"哦？前男友？"大允"傻逼拍的"。<br>
+          <b>骚话批发</b>：璐璐偷运文案"宝宝你听我说呀，我跟那个女生光溜溜的在床上不是出轨呀…"——雷雷"正好可以一起了"七七"1V2？"大允"这不是1V3了吗"；璐璐"宝宝你生活费或者工资哪天发？我看下我哪天过生日"，雷雷接梗"太好了 宝宝你生日我可以带着朋友空手来吗？"。<br>
+          <b>药罐文学</b>：16:01 <b>HH</b> 一句"西地那非么？还是他达拉非"引爆全场——孙志强"没事老吃呗""你用不用吃你说的不算""嘉尔看着身体挺棒 都靠药顶着呢"；大允"一天不能超20mg 我查了""我搜完 还得删搜索记录"；孙志强转述新闻"一个男的又喝酒又吃那个还吃多了 炸了 崩了"，P.F.L"屌爆了 真正意义上的"；雷雷顺势求职"妞哥 您看能收留我吗 我能干活 吃的少"，孙志强"去了你跟小浣熊睡一屋"。<br>
+          <b>猎奇片环节</b>：大允推《困惑的浪漫》"网上资源 没码 可以看看"，P.F.L"猎屌女""专门拿个剪刀谁硬剪谁"，璐璐喊停"要不聊点黄的吧别扯太变态了"。<br>
+          <b>文案四连</b>：璐璐"富二代滚出来发奶茶啊…赶紧转我20"——波妞、孙志强、P.F.L 相继全文复读，大允"这群里 除了我都是（富二代）"；璐璐"有些群友就硬装，光棍节没人约就没人约呗…"雷雷全文复读；璐璐收工"今天黄色内容过于多了明天怎么喂给ai呀"。
+        </div></div>
+        <div class="row disp"><div class="k">争议</div><div class="v">本时段全部为玩笑与网络文案复读，无事实主张。"炸了崩了"新闻为孙志强转述未核实；HH 的药物提问属调侃，其本人回应"？？？？我还真不用吃"，孙志强"你用不用吃你说的不算"。</div></div>
+        <div class="row concl"><div class="k">结论</div><div class="v">璐璐的"偷文案事业"蒸蒸日上（复读成功率 100%），HH 以 7 条消息完成当日最高性价比输出；同时给 AI 日报留下一道现实难题——<b>今天的黄色内容，明天怎么喂给 AI。</b></div></div>
+        <details>
+          <summary>查看原始片段（8 条）</summary>
+          <ul class="frag">
+            <li><span class="tm">14:30</span><span class="who">璐璐</span>"大允给大家展示一下你的工位[微笑] 全他妈是娃娃"</li>
+            <li><span class="tm">16:01</span><span class="who">HH</span>"西地那非么？" / "还是他达拉非"</li>
+            <li><span class="tm">16:13</span><span class="who">孙志强</span>"你用不用吃你说的不算"</li>
+            <li><span class="tm">17:06</span><span class="who">大允</span>"一天不能超20mg" / "我查了"</li>
+            <li><span class="tm">17:08</span><span class="who">P.F.L</span>"屌爆了" / "真正意义上的"</li>
+            <li><span class="tm">17:16</span><span class="who">大允</span>"困惑的浪漫" / "网上资源 没码 可以看看"</li>
+            <li><span class="tm">17:36</span><span class="who">璐璐</span>"富二代滚出来发奶茶啊…赶紧转我20"（后 3 人复读）</li>
+            <li><span class="tm">16:54</span><span class="who">璐璐</span>"今天黄色内容过于多了明天怎么喂给ai呀"</li>
+          </ul>
+        </details>
+      </div>
+    </article>
+
+    <!-- 5 -->
+    <article class="card topic">
+      <div class="t-head">
+        <div class="t-no">05</div>
+        <div>
+          <h3 class="t-title">追焦大瓜：拉面哥身败名裂始末与"骑车请在群里打卡"</h3>
+          <div class="t-meta">20:33–23:00 · <b>8 人参与</b> · 当日最大瓜＋新群规诞生</div>
+        </div>
+      </div>
+      <div class="t-body">
+        <div class="row"><div class="k">背景</div><div class="v">李汪洋 20:33 发图 @波妞er @易林"我想起来一事儿"——之前有个帅哥阴阳他"拿波哥湿巾套近乎"，他要"证明一下"；孙志强当场自曝"现买的 外卖袋子还在"，战火先烧向两位"大嘴巴"。</div></div>
+        <div class="row"><div class="k">观点</div><div class="v">
+          <b>大嘴巴攻防</b>：孙志强"大嘴巴""还美呢二位大嘴巴"，大允"大嘴巴 好歹占个大"，波妞"咱受这气？""他半夜都得做梦惊醒：谁说的！"。<br>
+          <b>追焦复盘</b>：<b>大允</b>"追焦啊 是人都能看见""那女的 夹在大帅哥 跟大力中间""不可能是陌生人""有点脑子的话 就不应该往戒台寺跑""过去只苍蝇都得被拍下来 何况这么大一个臭鸡蛋"。<br>
+          <b>璐璐（神探自证）</b>："是他发了抖音""我一看这是戒台寺""我就去找了一下""看到了大力和r3""他先发的抖音"；波妞"神探璐璐～""这个锅你算是背上了。。"。<br>
+          <b>孙志强</b>："璐璐把拉面搞得身败名裂""一切的起因就是因为追焦照片""导致刘关张三兄弟反目"；大允"主要还是鸡蛋自己是臭的"；波妞补充"我去安国内天还真有人问我 问我内个哈雷跟我啥关系""我觉得人家可能就是看见什麽了"。<br>
+          <b>教训总结</b>：孙志强"这个故事告诉我们骗群友出去自己骑车""不能骑自己车带没带过的头盔穿群友没见过的衣服"，并爆群主黑历史——"汪洋公司团建骗公司有重要的事结果骑车来了""还把汽车照片发公司群里""领导问他干嘛去他说不方便说"。<b>李汪洋</b>当场立规"骑车请在群里打卡"；波妞"敢背着群友自己出去骑车。。就让你身败名裂～""一把瓜子的事儿～"。<br>
+          <b>彩蛋</b>：李汪洋"去2026看看他的昵称[旺柴]"——波妞"哈哈哈哈哈 我看见了！""我要不也改一改？R3"璐璐"粉色还是白色[旺柴]"大允"RRR 吹波哦 R"；孙志强发定位"群主住上边 我住下边"李汪洋"睡在我下铺的兄弟"。
+        </div></div>
+        <div class="row disp"><div class="k">争议</div><div class="v">拉面哥 / 大力 / 戒台寺 / R3 事件全部依据璐璐的抖音截图与群友推断，<b>当事人未在群内回应</b>；"身败名裂"为玩笑定性；"团建骗公司"为孙志强爆料，群主未正面确认（仅以"睡在我下铺的兄弟"接梗）。</div></div>
+        <div class="row concl"><div class="k">结论</div><div class="v"><b>新群规诞生：骑车请在群里打卡。</b>"背群友骑车"被定义为高风险行为，违者"一把瓜子的事儿～"；R3 改名企划与"上下铺邻居"关系同步确认。</div></div>
+        <details>
+          <summary>查看原始片段（7 条）</summary>
+          <ul class="frag">
+            <li><span class="tm">20:39</span><span class="who">李汪洋</span>"我说家也用这个 现在证明一下[让我看看]"</li>
+            <li><span class="tm">22:33</span><span class="who">大允</span>"追焦啊 是人都能看见" / "那女的 夹在大帅哥 跟大力中间"</li>
+            <li><span class="tm">22:40</span><span class="who">璐璐</span>"是他发了抖音" / "我一看这是戒台寺" / "看到了大力和r3"</li>
+            <li><span class="tm">22:43</span><span class="who">孙志强</span>"璐璐把拉面搞得身败名裂"</li>
+            <li><span class="tm">22:47</span><span class="who">孙志强</span>"这个故事告诉我们骗群友出去自己骑车…"</li>
+            <li><span class="tm">22:55</span><span class="who">李汪洋</span>"骑车请在群里打卡"</li>
+            <li><span class="tm">23:00</span><span class="who">李汪洋</span>"睡在我下铺的兄弟"</li>
+          </ul>
+        </details>
+      </div>
+    </article>
+
+    <!-- 6 -->
+    <article class="card topic">
+      <div class="t-head">
+        <div class="t-no">06</div>
+        <div>
+          <h3 class="t-title">雷雷失恋复盘："6 天 5 面"剧终，恋爱脑确诊</h3>
+          <div class="t-meta">23:07–23:58（尾声至次日 00:34） · <b>6 人参与</b> · 全天情感重量担当</div>
+        </div>
+      </div>
+      <div class="t-body">
+        <div class="row"><div class="k">背景</div><div class="v">雷雷从廊坊归来宣布"刚到家 心情极度不好"——"跟刚认识的妹子吵一架 掰了""就是6天5面那位""太窒息了""完了我这恋爱脑真得治了"。</div></div>
+        <div class="row"><div class="k">观点</div><div class="v">
+          <b>雷雷（当事人自述）</b>："本来有点儿好感，然后当朋友处着呢，突然，关系有点儿暧昧…但是人家又当又立，你要真问她喜欢我呀 要跟我谈吗，她说不，慢热。但是要红包，要礼物。""煞笔的点是我还给了"；导火索——"今天下午说 大老远去廊坊陪我吃饭 我就不高兴了""然后我就找个姐姐一起吃 她说我多线"；"还说我周六去成都 这一周她怎么办""我说咱俩开一间房啊 她说你把我当什么人了"；补充"吃个生蚝 我都没说啥黄的，她自己说她前男友不太行 得吃药""其实吃石锅鱼那天就已经感到分歧了"。<br>
+          <b>李汪洋</b>："你把大嫂和二嫂凑一桌了？你可真行""亏你还有阅历了 你要当朋友就好好当 别玩暧昧"；雷雷"我真没玩 是她玩"。<br>
+          <b>璐璐（首席情感分析师）</b>："其实你就是找个僚机""男的也不行。怕他俩看对眼""一方面可能是真吃醋了，另一方面就是小题大做""趁机就是生生气，然后再关你要点东西啥的吧""只能说段位比你高点 你被人玩了"；并预告"明天日报关键词就是吃药 这个词今日高频啊"。<br>
+          <b>结尾</b>：大允"搞不懂你们这些情情爱爱的"，波妞跨零点复读同句"睡了就好了。。"，雷雷"睡吧睡吧 下一个更乖"（次日 00:34 再补一刀"卧槽暴击"）。
+        </div></div>
+        <div class="row disp"><div class="k">争议</div><div class="v">全程为雷雷单方陈述，对方无回应口径；"要红包要礼物""前男友不太行得吃药"均为其转述；璐璐"趁机生生气"为个人推断。白天与"姐姐"同席吃饭的事实与当晚复盘相互印证，但动机描述仅有一方版本。</div></div>
+        <div class="row concl"><div class="k">结论</div><div class="v"><b>"6 天 5 面"正式剧终</b>，诊断结论"恋爱脑真得治了"由本人签署；群内开出处方——"睡吧睡吧 下一个更乖"。昨日"约会经济学"的"6天5面"指标就此作废。</div></div>
+        <details>
+          <summary>查看原始片段（8 条）</summary>
+          <ul class="frag">
+            <li><span class="tm">23:19</span><span class="who">雷雷</span>"跟刚认识的妹子吵一架 掰了" / "就是6天5面那位" / "太窒息了"</li>
+            <li><span class="tm">23:20</span><span class="who">雷雷</span>"完了我这恋爱脑真得治了"</li>
+            <li><span class="tm">23:24</span><span class="who">雷雷</span>"人家又当又立…她说不，慢热。但是要红包，要礼物。"</li>
+            <li><span class="tm">23:26</span><span class="who">雷雷</span>"煞笔的点是我还给了"</li>
+            <li><span class="tm">23:30</span><span class="who">李汪洋</span>"你把大嫂和二嫂凑一桌了？你可真行"</li>
+            <li><span class="tm">23:40</span><span class="who">璐璐</span>"只能说段位比你高点 你被人玩了"</li>
+            <li><span class="tm">23:41</span><span class="who">璐璐</span>"明天日报关键词就是吃药 这个词今日高频啊"</li>
+            <li><span class="tm">23:58</span><span class="who">雷雷</span>"睡吧睡吧 下一个更乖"</li>
+          </ul>
+        </details>
+      </div>
+    </article>
+  </section>
+
+  <section>
+    <div class="sec-h"><h2>今日金句</h2><span class="sub">原话照录，未改写</span></div>
+    <div class="q"><p>"西地那非么？还是他达拉非"</p><div class="who"><b>HH</b> 16:01 · 全天 7 条消息中的名场面</div></div>
+    <div class="q"><p>"你用不用吃你说的不算"</p><div class="who"><b>孙志强</b> 16:13</div></div>
+    <div class="q"><p>"一天不能超20mg 我查了"<br>"我搜完 还得删搜索记录"</p><div class="who"><b>大允</b> 17:06–17:08</div></div>
+    <div class="q"><p>"屌爆了 真正意义上的"</p><div class="who"><b>P.F.L</b> 17:08</div></div>
+    <div class="q"><p>"想装波大的"<br>"结果拉了坨大的"</p><div class="who"><b>七七</b> 11:18–11:19 · 总结相亲撞Q8惨案</div></div>
+    <div class="q"><p>"大哥说花都花了 那就跟你相亲吧"</p><div class="who"><b>李汪洋</b> 11:17 · 被七七、大允复读</div></div>
+    <div class="q"><p>"帕加尼没见过 但是我知道帕尼尼"</p><div class="who"><b>大允</b> 11:24</div></div>
+    <div class="q"><p>"不要老婆了 我悟了 还是群友好"</p><div class="who"><b>雷雷</b> 16:38 · 当晚即被打脸（见话题 06）</div></div>
+    <div class="q"><p>"有些群友就硬装，光棍节没人约就没人约呗，出来聊会，真的是，天天聊天，就故意今天不说话，搞得自己在约会一样"</p><div class="who"><b>璐璐</b> 11:34 · 雷雷全文复读</div></div>
+    <div class="q"><p>"过去只苍蝇都得被拍下来 何况这么大一个臭鸡蛋"</p><div class="who"><b>大允</b> 22:45 · 论戒台寺追焦</div></div>
+    <div class="q"><p>"璐璐把拉面搞得身败名裂"</p><div class="who"><b>孙志强</b> 22:43</div></div>
+    <div class="q"><p>"骑车请在群里打卡"</p><div class="who"><b>李汪洋</b> 22:55 · 当日新群规</div></div>
+    <div class="q"><p>"你把大嫂和二嫂凑一桌了？你可真行"</p><div class="who"><b>李汪洋</b> 23:30</div></div>
+    <div class="q"><p>"只能说段位比你高点 你被人玩了"</p><div class="who"><b>璐璐</b> 23:40 · 首席情感分析师结案陈词</div></div>
+    <div class="q"><p>"明天日报关键词就是吃药 这个词今日高频啊"</p><div class="who"><b>璐璐</b> 23:41</div></div>
+    <div class="q"><p>"搞不懂你们这些情情爱爱的"</p><div class="who"><b>大允</b> 23:51 · 波妞跨零点复读，璐璐 00:00 再复读</div></div>
+    <div class="q"><p>"睡吧睡吧 下一个更乖"</p><div class="who"><b>雷雷</b> 23:58</div></div>
+    <div class="q"><p>"睡在我下铺的兄弟"</p><div class="who"><b>李汪洋</b> 23:00 · 收编孙志强为邻居</div></div>
+  </section>
+
+  <section>
+    <div class="sec-h"><h2>争议与待核实</h2><span class="sub">聊天观点 ≠ 已核实事实</span></div>
+    <div class="warnbox">
+      <ol>
+        <li><b>七七撞车故事</b>——"借 4S 店 Q8 试驾车相亲""修车 14 万""对方全责"均为口述，无凭证；大允质疑"怎么感觉好像听你说过"，存在复讲可能。</li>
+        <li><b>雷雷"6 天 5 面"失恋</b>——全程单方陈述，对方无回应口径；"要红包要礼物""她前男友不太行得吃药"均为其转述；廊坊局"姐姐""妹妹"身份未说明。</li>
+        <li><b>追焦大瓜（拉面哥 / 大力 / 戒台寺 / R3）</b>——依据璐璐的抖音截图与群友推断拼接，当事人未在群内回应；"身败名裂"为玩笑定性，不构成事实认定。</li>
+        <li><b>"群主团建骗公司"黑历史</b>——出自孙志强转述（含"把汽车照片发公司群里"细节），群主未确认也未否认。</li>
+        <li><b>药罐文学</b>——"一天不能超 20mg""吃多了炸了崩了"的新闻为孙志强转述，未核实；HH 的提问属玩笑，本人已回应"我还真不用吃"。</li>
+        <li><b>个人陈述类</b>——大允"108 斤胖了 20 斤"、手办"照着照片做的"、璐璐"高价收的娃娃"等均无法核验。</li>
+        <li><b>多媒体内容</b>——64 张图、4 段视频无法逐条核验；2 条语音不可读；76 条引用已按"引用→回复者"区分归属；聊天记录转发 1 条（REBUFFINI 配件）不计入个人观点。</li>
+      </ol>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-h"><h2>表情包与图片观察</h2><span class="sub">125 个动画表情 · 64 张图 · 4 段视频</span></div>
+    <div class="card">
+      <div class="spk"><span class="nm">孙志强</span><span class="track"><span class="fill" style="width:100%"></span></span><span class="ct">31</span></div>
+      <div class="spk"><span class="nm">璐璐</span><span class="track"><span class="fill" style="width:77%"></span></span><span class="ct">24</span></div>
+      <div class="spk"><span class="nm">大允</span><span class="track"><span class="fill" style="width:74%"></span></span><span class="ct">23</span></div>
+      <div class="spk"><span class="nm">雷雷</span><span class="track"><span class="fill" style="width:42%"></span></span><span class="ct">13</span></div>
+      <div class="spk"><span class="nm">波妞</span><span class="track"><span class="fill" style="width:42%"></span></span><span class="ct">13</span></div>
+      <div class="spk"><span class="nm">李汪洋</span><span class="track"><span class="fill" style="width:32%"></span></span><span class="ct">10</span></div>
+      <div class="spk"><span class="nm">P.F.L</span><span class="track"><span class="fill" style="width:16%"></span></span><span class="ct">5</span></div>
+      <div class="spk"><span class="nm">长乐</span><span class="track"><span class="fill" style="width:10%"></span></span><span class="ct">3</span></div>
+      <div class="spk"><span class="nm">七七</span><span class="track"><span class="fill" style="width:6%"></span></span><span class="ct">2</span></div>
+      <div class="spk"><span class="nm">HH</span><span class="track"><span class="fill" style="width:3%"></span></span><span class="ct">1</span></div>
+      <div class="chart-foot">
+        表情总量 125 个（占 13.4%），与昨日基本持平，但格局有变：<br>
+        <b>表情王易主</b>——<b>孙志强</b>以 31 个首次登顶（发言占比 23.3%），主要火力集中在晚间的"大嘴巴"骂战表情雨（22:22–23:00）；璐璐从 33 降到 24 让出王座。<br>
+        <b>大允表情近乎翻倍</b>（13 → 23），但占比 10.2% 依旧属"话痨少表情"；<b>七七连续两天零表情画风</b>（58 条发言仅 2 个，3.4%），光棍节惨案全靠文字输出；李汪洋 16.4% 维持"沉默替代品"配置。<br>
+        三大用途：早安打卡接力（06:50–08:23 七人各发一个开场）、"大嘴巴"骂战与"哈哈哈哈"笑场（文本级"哈哈"刷屏 19 条）、复读文案时的情绪配件。表情高峰与话题峰同步：11 点（惨案）、17 点（药罐文学）、22–23 点（追焦＋失恋）。
+      </div>
+      <div class="mix">
+        <span class="tag">图片 64 张：大允 26 张（41%）蝉联"截图叙事大师"——日报榜单、手办、猎奇片海报</span>
+        <span class="tag">波妞 11 张：滩羊铺子羊排四连拍，美食频道台柱二连庄</span>
+        <span class="tag">雷雷 6 张：廊坊炒羊蝎子三人局实拍，当日唯一"外景记者"</span>
+        <span class="tag">孙志强 7 张：偷拍图＋"炸了崩了"新闻图</span>
+        <span class="tag">视频 4 段：新疆妞跳舞（璐璐发完秒撤回）、雷雷廊坊回传</span>
+        <span class="tag">语音 2 条不可读；聊天记录转发 1 条（REBUFFINI 配件）</span>
+        <span class="tag">复读王：波妞 8 次登顶（含跨零点复读"搞不懂你们这些情情爱爱的"）</span>
+        <span class="tag">已过滤："哈哈哈哈"级刷屏 19 条、"看着就好吃"×3、"富二代奶茶文案"×4 连复读、"光棍节硬装文案"×2</span>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <b>统计口径</b>：数据源为 2026-11-11 00:00–23:59（Asia/Shanghai）的群聊导出记录，群「瓜子精选」（58586616554@chatroom），共 <b>935 条</b>；其中 11-11 占 932 条（06:50:24–23:58），另有 3 条跨至 11-12 00:00–00:34，作为当日话题尾声注明，不另立话题。<br>
+    其中系统消息 4 条、"拍一拍"提示 4 条（发送者显示为"未知发送者"）不计入真人发言，故真人发言为 <b>927 条</b>，发言人 11 位（含 HH 7 条、长乐 9 条）。人均约 84 条。<br>
+    纯表情 125 条（占 13.4%），图片 64 张；重点话题精简为 6 个；无意义的表情刷屏与复读已在正文中过滤，仅在"表情包与图片观察"中留档。<br>
+    人名已按群内常用称呼统一显示：大允、波妞、李汪洋、七七等，不再保留备注前缀与表情符号。<br>
+    本报告仅基于 11 月 11 日单日记录（含跨零点尾声），未引入其他日期内容；所有引述均为原话摘录，未改写语义；涉及他人的私人信息（感情状况、健康、事故经历）已按"群内玩笑/单方转述"处理，不代表事实认定。<br>
+    生成时间：2026-11-12 09:40 · 仅供群内回顾使用。
+  </footer>
+
+</div>
+</body>
+</html>
